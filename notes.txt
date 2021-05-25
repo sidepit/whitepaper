@@ -1,0 +1,77 @@
+
+https://twitter.com/_mahimna/status/1380929323419410438
+
+https://www.longhash.com/en/news/3324/DeFi%E2%80%99s-Oracle-Problem-May-Not-Be-Solvable
+
+
+
+https://ipfs.io/ipfs/bafykbzaceb4g2yaljyy2erfqjfbk5qwdb7tkuxg42hf2jbianlhcoqvsm4jmw?filename=Reto%20Francioni%2C%20Robert%20A.%20Schwartz%20%28eds.%29%20-%20Equity%20Markets%20in%20Transition_%20The%20Value%20Chain%2C%20Price%20Discovery%2C%20Regulation%2C%20and%20Beyond-Springer%20International%20Publishing%20%282017%29.pdf
+
+
+An exchange’s economic function is not simply to make the transactions but 
+(and this is the bigger challenge) an exchange also “produces” the prices at which 
+the transactions are made. Delivering quality price discovery is a defining function 
+of a stock exchange. From a definitional perspective, any trading facility that has as 
+its primary function the delivery of good price discovery can, de facto at least, be 
+considered an exchange. Unfortunately, however, the price discovery function of an 
+exchange typically receives insufficient attention in market structure discussions. 
+This is largely attributable to the non-observability of equilibrium prices and, therefore, to the difficulty of quantifying the deviations of transaction prices from their 
+equilibrium values
+
+
+
+aving recognized (a) the importance of an exchange delivering reasonably accurate price discovery, (b) that the quality of price discovery can be assessed by an 
+intraday volatility metric, and (c) that intraday, first half-hour volatility can be strikingly high, we have one further matter to address at this time: the relationship 
+between the quality of price discovery and a market’s architecture.
+
+
+file:///C:/Users/Jay/Downloads/Barclay%20And%20Hendershott%20-%20Price%20Discovery%20And%20Trading%20After%20Hours%20(2).pdf
+
+Generate significant price discovery with litte trading  
+
+
+Price and Roll - https://www.sciencedirect.com/science/article/abs/pii/0304405X86900048
+
+BaRCLAY lIZENBERGER wARNER 
+
+https://econpapers.repec.org/article/ouprfinst/v_3a3_3ay_3a1990_3ai_3a2_3ap_3a233-53.htm
+file:///C:/Users/Jay/Downloads/Telegram%20Desktop/barclay1990.pdf
+
+
+Faucault
+
+https://alo.mit.edu/wp-content/uploads/2015/08/EconometricModelsLimitOrderExecutions2002.pdf
+
+There is a large and growing theoretical literature that considers the economic role
+of limit orders in the price discovery process. Foucault (1993), Glosten (1989, 1994),
+Easley and O’Hara (1991), Parlour (1998), Chakravarty and Holden (1995),
+Kavajecz (1998), Rock (1996), Sandas (1999), and Seppi (1997) are just a few recent (
+examples. The general focus of these papers is the effect of limit orders on the
+market, the interaction between limit and market orders, and the role of the market
+maker. None of these studies is set in a continuous-trading environment, hence they
+provide little direct guidance for modeling limit-order execution times
+
+
+https://faculty.washington.edu/ezivot/research/dynamicsOfPriceDiscovery.pdf
+
+Price discovery is one of the central functions of financial markets. In the market
+microstructure literature, it has been variously interpreted as, “the search for an equilibrium price” (Schreiber and Schwartz (1986)), “gathering and interpreting news”
+(Baillie et. al. (2002)), “the incorporation of the information implicit in investor
+trading into market prices” (Lehmann (2002)). These interpretations suggest that
+price discovery is dynamic in nature, and an efficient price discovery process is characterized by the fast adjustment of market prices from the old equilibrium to the
+new equilibrium with the arrival of new information. In particular, Madhavan (2002)
+distinguishes dynamic price discovery issues from static issues such as trading cost
+determination
+
+
+e. As a result, our methodology establishes
+a framework to directly quantify the dynamics of price discover
+
+
+https://ipfs.io/ipfs/bafykbzaceb4g2yaljyy2erfqjfbk5qwdb7tkuxg42hf2jbianlhcoqvsm4jmw?filename=Reto%20Francioni%2C%20Robert%20A.%20Schwartz%20%28eds.%29%20-%20Equity%20Markets%20in%20Transition_%20The%20Value%20Chain%2C%20Price%20Discovery%2C%20Regulation%2C%20and%20Beyond-Springer%20International%20Publishing%20%282017%29.pdf 
+
+
+4.1 Price Discovery
+4.1.1 Importance of Price Discovery
+Price discovery is achieved as orders are submitted to a market and turned into 
+trades. A transaction price is, of course, determined each time a trade is consummated, but price discovery refers to something more fundamental. Price discovery
