@@ -3,6 +3,7 @@
 %\usepackage{helvet}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{natbib}
 \usepackage[inline, shortlabels]{enumitem}
 \RequirePackage[a4paper,top=3.5cm,left=3cm,right=3cm,bottom=2.4cm]{geometry}
 \title{Fair Price Discovery with Decentrlized Exchange}
@@ -30,6 +31,9 @@ An exchange is a financial market, where trading of securities occur. The pupose
 Centralized Exchanges (CEX), have been well researched and developed in traditional finaince for well over a century. [exchage cite] They  evoled from trading under a tree, the Chicago trading pits, to electroic exchanges with continuous limit order books. Modern exchanges provide 24/7 trading, and offer co-location for the most prolfic traders, High Freaquency Trading (HFT) bots. 
 
 Decentralized exchange (DEX), aims to bring tradition centralized exchanges into a peer to peer blockchain protocol. Due to early bitcoin CEX hacks, most DEXs have been focused on the settlement utility of exchange. As price discovery is an emergent property of the real-time trading and difficult to research. 
+
+We present a DEX with focus on providing price discovery. Our solution, Fair Price Disovery (FPD) 
+
 \end{abstract}
 
 \section{Introduction}
@@ -41,10 +45,6 @@ An exchange is a financial market, where trading of securities occur. The pupose
 Centralized Exchanges (CEX), have been well researched and developed in traditional finaince for well over a century. [exchage cite] They  evoled from trading under a tree, the Chicago trading pits, to electroic exchanges with continuous limit order books. Modern exchanges provide 24/7 trading, and offer co-location for the most prolfic traders, High Freaquency Trading (HFT) bots. 
 
 Decentralized exchange (DEX), aims to bring tradition centralized exchanges into a peer to peer blockchain protocol. Due to early bitcoin CEX hacks, most DEXs have been focused on the settlement utility of exchange. As price discovery is an emergent property of the real-time trading and difficult to research. 
-
-
-
-
 
 
 The word "central" is part of the common definitio of an exchange. "A central place where buying and sellers come to finf price and execute trades. 
@@ -71,7 +71,30 @@ Transparency is an importtant feature
 
 first to win is most important 
 
-First document. This is a simple example, with no 
-extra parameters or packages included. not sure
+
+\subsection*{Price Discovery}
+Price disovery as a key goal in the design of the market structure. In fact, the goal of the architecure of an exchange meachanism, is to attract as much liquidity needed to for price discovery.  \citet{francioni_schwartz_2017}[xxx]
+
+Price discovery is described in microstruture research as a search for an equalibrian price, from new external information. This new information is reflected in the traders orders, and is ultimatly coverted into a market price. \citep{RePEc:nbr:nberwo:6257}
+
+\begin{quote}
+    price discovery is dynamic in nature, and an efficient price discovery process is characterized by the fast adjustment of market prices from the old equilibrium to the new equilibrium with the a  rrival of new information    
+\end{quote}
+\cite{RePEc:udb:wpaper:uwec-2005-01-r}
+
+Central order book and price discovery are tightly related. 
+
+
+\cite{RePEc:eee:jfinec:v:17:y:1986:i:1:p:5-26}
+
+\subsection*{The High Freaquency Trading Game}
+ 
+
 \section{Results}
+\cite{ChenA} 
+\newpage
+\bibliography{sidepit}{}
+\bibliographystyle{plain}
+% \bibliographystyle{unsrt}
+
 \end{document}
