@@ -55,7 +55,7 @@ provide little direct guidance for modeling limit-order execution times
 https://faculty.washington.edu/ezivot/research/dynamicsOfPriceDiscovery.pdf
 
 Price discovery is one of the central functions of financial markets. In the market
-microstructure literature, it has been variously interpreted as, “the search for an equilibrium price” (Schreiber and Schwartz (1986)), “gathering and interpreting news”
+microstructure literature, it has been variously interpreted as, “the search for an equilibrium price” (Schreiber and Schwartz (1986)), “gathering and interpreting news”
 (Baillie et. al. (2002)), “the incorporation of the information implicit in investor
 trading into market prices” (Lehmann (2002)). These interpretations suggest that
 price discovery is dynamic in nature, and an efficient price discovery process is characterized by the fast adjustment of market prices from the old equilibrium to the
@@ -75,3 +75,24 @@ https://ipfs.io/ipfs/bafykbzaceb4g2yaljyy2erfqjfbk5qwdb7tkuxg42hf2jbianlhcoqvsm4
 4.1.1 Importance of Price Discovery
 Price discovery is achieved as orders are submitted to a market and turned into 
 trades. A transaction price is, of course, determined each time a trade is consummated, but price discovery refers to something more fundamental. Price discovery
+
+
+
+Bisq is focused on settlement and self custody.
+The market is quote driven. Market makers provide liquidity at specified prices  and volumes for Takers to accept or ignore. MM earn no special privilege as is common on CEXs. 
+There is no matching engine with predefined rules to facilitate the trade, the order depth is set by the MM and bids accepted or ignored. 
+(Trading is slow and in general the spread is wider than on CEX. )
+Using DEXs on Eth works in a similar fashion, the various swap markets are quote driven and orders accepted by takers. No matching engine with predefined rules to facilitate trade exists. 
+The matching engine on these platforms facilitates trade 
+Why is it that quote driven orderbooks have been made the standard of how decentralized finance is conducted over ten years after Satoshi made the impossible dream of p2p electronic cash come true and how good is this solution for qualitative price discovery?
+
+As is well documented in papers, Miner Extracted Value(Mev) has become a phenomenon in relation to swap protocols serving as Dexs. 
+By using the advantage of virtual co-location. Miners are able to front-run transactions on swap protocols by having the advantages of being able to see and add transactions as they see fit. The Miner acts as the matching engine. 
+ 
+Is there a difference between how this works on top of Bitcoin and Turing complete blockchains such as Ethereum?
+Let’s study Satsohi’s vision first: 
+Peer to peer electronic cash. The true invention was solving the double spend problem. On top of that the opportunity to transact without trust arose. Miners effectively choose between two conflicting transactions to settle a dispute. 
+What happens when this is transferred to a Turing complete setting, such as Etherium?
+First of all, the whole point of Ethereum is assumed to be the freedom to write whatever code you like. Meaning when a transaction is accepted by the network, one cannot be sure what is affected and what is not so the code can’t be reasoned about or standardized. Every line must be executed to know the outcome. This leads to order-dependence. Whoever gets in a block first might be of great importance to the outcome. In a world of settling trades it becomes especially obvious how important the sequence of transactions is. Did I Get hit before I cancelled? Was my bid accepted before the price dropped? These are examples of questions that’ll eventually settle the financial status of individuals. 
+
+So how does Bisq work on Bitcoin without frontrunning but swap contracts on Ethereum are prone to front running? On bisq, we have known transaction types, there are no liquidity pools onchain.

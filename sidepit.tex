@@ -1,5 +1,6 @@
 \documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
+% \usepackage[english]{babel}
 %\usepackage{helvet}
 \usepackage{graphicx}
 \usepackage{hyperref}
@@ -9,6 +10,10 @@
 \title{Fair Price Discovery with Decentrlized Exchange}
 \author{Yehuda Jay Berg \\jaybny@gmail.com}
 \date{May 2021}
+
+
+\newtheorem{theorem}{Theorem}
+
 \begin{document}
 \parindent 0cm
 \parskip   6pt
@@ -46,13 +51,13 @@ Centralized Exchanges (CEX), have been well researched and developed in traditio
 
 Decentralized exchange (DEX), aims to bring tradition centralized exchanges into a peer to peer blockchain protocol. Due to early bitcoin CEX hacks, most DEXs have been focused on the settlement utility of exchange. As price discovery is an emergent property of the real-time trading and difficult to research. 
 
-
+ 
 The word "central" is part of the common definitio of an exchange. "A central place where buying and sellers come to finf price and execute trades. 
 
 The pupose of exchage is two fold. 1 - for price disoverry [cite]  2 - for counter party settlement 
 
 Due to early bitcoin exchange hacks, Decentrlized Exchange or (DEX), has been mostly focused on the non-custodial side for the settlement utility. 
-
+ 
 We focusing on the real public service of an Exchange, the price disovery utility. We design price discovery within a DEX, with a pupose of "Fair Price Discovery". 
 
 With, Fair Price Disovery (FPD), as our goal. We focus on a mechanism designed exchange, for reaching equalibriam which produces price. 
@@ -89,13 +94,31 @@ From a definitional perspective, any trading facility that has as its primary fu
 
 \subsubsection*{} Limit order books and price discovery are tightly related. \citep{RePEc:nbr:nberwo:6257} \cite{RePEc:eee:jfinec:v:17:y:1986:i:1:p:5-26}
 
-Continuous limit order books (CLOB) are the market micro struture that leads to price discovery \footnote{Other types of markets such as call auctions, and dealer markets, dont provide the robustness of limit orders for price discovery. \cite{RePEc:hal:journl:hal-00459785}}. There are two order types. Limit orders, where you provide your own price, with the risk of waiting to be matched. And market-orders, where you get filled immediatly in return for a possible worse price.
+\paragraph*{Continuous limit order books (CLOB)}   are the market micro struture that leads to price discovery \footnote{Other types of markets such as call auctions, and dealer markets, dont provide the robustness of limit orders for price discovery. \cite{RePEc:hal:journl:hal-00459785}}. There are two order types. Limit orders, where you provide your own price, with the risk of waiting to be matched. And market-orders, where you get filled immediatly in return for a possible worse price.
 
 
-Directional liquiidy traders 
+Directional liquiidy traders - use market orders  
+Market Makers - use limit orders 
+
+HFT-bandit  
+
+\paragraph*{Adverse Selection}
+
+Show HFT Alpha 
+Show how market-orders are the cryponite  
+
 
 \subsection*{Perfect Alpha and the High Freaquency Trading (HFT) arms race}
 We define \emph{Perfect Alpha} as recurring risk-less real-time arbitrage with positive EV. Beleive it or not, \emph{Perfect Alpha} is a product of centralized exchanges and continous limit-order books. 
+
+
+\begin{theorem}
+    When 2 or more orders coem in after your order, there exists a free arbitrage, provided  \begin {enumerate*} [1) ]%
+    \item each order is for 1 share at a time, \item you are first to act \end {enumerate*}. 
+    Perfect Alpha exists in Continous Limit Order books. 
+\end{theorem}
+
+
 
       \begin{enumerate}
         \item HFT - "Buy 1 @ 100"
@@ -112,9 +135,40 @@ We define \emph{Perfect Alpha} as recurring risk-less real-time arbitrage with p
         \end{tabular}
       \end{center}
     
+\subsection{Decentralized Limit Order Books} make these problems much worse, by removing the one defensive market-order 
+
+\subsection{Standard Blockchain Solutions} 
+
+\subsubsection{Permissionless} 
+
+\paragraph*{Ethereum} smart contracts create MEV
+
+MEV and front-running 
+
+Uniswap - 
+
+Total Ordering Consenusns 
+
+\subsubsection{Permissioned blockchains} remove the issues with open blockchains, and uses BFT techniques 
 
 
- 
+\subsubsection{Why does bitcoin work} 
+Only when asking why? do we come with a new theory \emph{Ration Design}
+
+\subsubsection{Why does it not work with Ethereum, Aequitas and BFT?}
+Theproblem is abtractions. Solving generic solution with frameworks vs solving for a spefici utility 
+
+\subsection{A new blockchain abstraction} 
+Only when designing for a specific utility are we able to use designer intent vc averserial modiivations 
+
+\begin{enumerate}
+    \item First design with intent using Mechanism Design 
+    \item Release the code and protocol
+    \item Test results from empiracle evidense 
+  \end{enumerate}
+
+We now have mechanism designed system that matched a reational design theory of decentrlaized exchange. 
+
 
 \section{Results}
 \cite{ChenA} 
