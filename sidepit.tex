@@ -158,16 +158,89 @@ Only when asking why? do we come with a new theory \emph{Ration Design}
 \subsubsection{Why does it not work with Ethereum, Aequitas and BFT?}
 Theproblem is abtractions. Solving generic solution with frameworks vs solving for a spefici utility 
 
-\subsection{A new blockchain abstraction} 
+\section{A new blockchain abstraction} 
 Only when designing for a specific utility are we able to use designer intent vc averserial modiivations 
 
 \begin{enumerate}
     \item First design with intent using Mechanism Design 
     \item Release the code and protocol
     \item Test results from empiracle evidense 
-  \end{enumerate}
+\end{enumerate}
 
 We now have mechanism designed system that matched a reational design theory of decentrlaized exchange. 
+
+\section{Fair Price Discovery} 
+
+\subsection{Preliminaries}
+Order book transaction are like advertisements. Sender wants to broadcast intent. Intent of other seeing your transactions eliminates the commit/reveal strategies 
+
+\begin{enumerate}
+    \item Full transpareency - no commit-reveal 
+    \item Remove rent-seeking co-location 
+    \item Acknolege impossibility of total-ordering Consenusns
+    \item Make front-runnig explicit, but limited to reording - no inseting new orders 
+\end{enumerate}
+
+Centralized matching gives market-order privacy in return for co-location issues 
+Decentralized matching removes co-location advantage in return for loss of market-order privacy 
+
+\paragraph*{Covert Adversaries} we learn that just being able to show cheating can reduce it. 
+
+\subsection{On-Chain Solution}
+We focus on solving for decentralized matching engine that results in price discovery. Note, an on-chain solution with assets controls by the procol eliminates the centralized custody and settlement issues. 
+
+Goal is to eliminate front-running when there is consensus on order, and allow explic front-running where total order consensus is not possible.
+
+Step1: Hybrid blockchain, acts permissioned with BFT consensus by each node selecting quarum slices  ( Stellar )
+Step2: Node select quarums based on reputation and trading activity. Bigger trading operations with good uptime, and heavy volume, will be sleected by many. 
+Step3: Reach consensus on mempool on past 5 seconds. 
+Step4: Pay to re-order blocks by bribing bitcoin miners, or paying centralized exchange operator or buring coins. 
+
+
+\subsubsection{Order transaction types} - limit and mraket and cancels. 
+
+Buy 1 at 100
+Sell 1 at 101 
+Sell 1 at market
+Cancel order 
+
+Seperating consensus on the orders from the state and result of thos orders. 
+
+Order-book is determinisitic based on the set of trasnactions and the ordering of those trasactions 
+
+As a new on-chain protocol, with no dependance on smart-contracts or layer 1 like ethereum. The state and code is contained within the node. 
+
+Node maintains a matching-engine and the state of the market in real-time. 
+Nodes gossip they ordering in the background - this is not used for consenus but for preventing covert adversaries 
+Node reach quarum with slices on mempool
+Nodes use results of auction, for reordering block  
+
+Node maintains multiple states by looping over all permutations. Most permutation will not change the state. 
+When a permutation changes state the node will compare results and pur a value on the reults - and enter auction when needed. 
+
+Honest nodes will agree to default to actual real-time "true" orderings. 
+
+\paragraph*{Example Honest Front-running} 
+Limit order cancelled immediatly after getting filled by a market-order 
+
+\paragraph*{Example Dis-Honest Front-running} 
+Limit order inserted with a higher price to standing limit-order to front-run the fills, due to new market move 
+
+In this example, the adversary will try to get a new order in at the end of the time-block. 
+Note: doing this immediatly becomes honest front-running 
+
+Difference between honest and dis-honets front-running, is when 
+
+\paragraph*{Example2 Dis-Honest Front-running} 
+Limit order cancelled immediatly after getting filled by a market-order, but gossiping the cancel before gossiping the market order. 
+
+\subsubsection{Designer intented result} is a decentralized matching engine where no front-running occurs in real-time. 
+
+No advantage to real-time front-runnings 
+Disadvantage by losing honest reputation, where nodes will not sure to add you to their quarum slice.  
+
+\subsubsection{note}
+note how we dont have liveleness or consitancy or censhorship resistance guarnetees, as those are concepts for the design of protols with differant utilities. As we are seeking the utility of Fair Price Discovery from a decentralized on-chain blockchain matching engine exchange protocol. 
 
 
 \section{Results}
