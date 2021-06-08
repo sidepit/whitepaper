@@ -188,6 +188,38 @@ We now have mechanism designed system that matched a reational design theory of 
 
 \section{Fair Price Discovery} 
 
+\section{Decentralized Limit Order Books}
+We start with a closed network of exchange nodes, which each node has a matching-engine and maintains a CLOB, much like a centralized exchange. 
+
+The distributed network of nodes come to consensus on the total ordering of transactions. This is done in two steps: 
+
+\begin{enumerate}
+    \item Every N seconds, consensus is reached on \emph{block-data}, a list of transactions from the mempool. 
+    \item An auction is held, where the highest bidder gets to reorder the transactions into a \emph{block-order}  
+\end{enumerate}
+
+From these two simple steps we have removed the advantage of HFT co-location, the need to front-run, and for \emph{Miner Extracted Value}
+
+\paragraph*{HFT Co-Location} is no longer possible as there is no single location for the matching engine. Furthermore, the notion of \emph{being first} goes away, as all orders within the block are the same in regards to time. Also, since you can pay to \emph{be first} after the fact, there is no longer justification of cost of the HFT Arms race. 
+
+\paragraph*{Front-running} by \emph{rushing} has no advantage, as the processing order is not determined by which transaction was seen first on the network. 
+
+\paragraph*{Front-running} by \emph{rushing} has no advantage, as the processing order is not determined by which transaction was seen first on the network. 
+
+Acknowledging the Condorcet paradox the impossibility of fair ordering \cite{Kelkar_2020} 
+
+
+
+In addition to a CLOB, each node also maintains the state of all accounts mapped to a \emph{pub-key} 
+
+\subsection{Centralized Fair Price Discovery}
+Starting with a centralized exchange we create a distributed limit order book to reach fair price discovery. Each exchange member will control its own matching-engine node and maintain an orderbook state.       
+
+\paragraph*{Create a network of known nodes}, with each node identified by an ip adress and a \emph{pub-key} based addess.     
+
+\paragraph*{Nodes crate new transactions}, and broadcast them to each node onthe network. Transactions propogate through the network via a gossip   with each node identified by an ip adress and a \emph{pub-key} based addess.     
+
+
 \subsection{Preliminaries}
 Order book transaction are like advertisements. Sender wants to broadcast intent. Intent of other seeing your transactions eliminates the commit/reveal strategies 
 
