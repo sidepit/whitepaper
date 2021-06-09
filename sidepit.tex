@@ -7,7 +7,7 @@
 \usepackage{natbib}
 \usepackage[inline, shortlabels]{enumitem}
 \RequirePackage[a4paper,top=3.5cm,left=3cm,right=3cm,bottom=2.4cm]{geometry}
-\title{Fair Price Discovery with Decentrlized Exchange}
+\title{Fair Price Discovery with Decentralized Exchange}
 \author{Yehuda Jay Berg \\jaybny@gmail.com}
 \date{May 2021}
 
@@ -50,8 +50,28 @@ However, the price discovery function of an  exchange typically receives insuffi
     price discovery is dynamic in nature, and an efficient price discovery process is characterized by the fast adjustment of market prices from the old equilibrium to the new equilibrium with the arrival of new information \cite{RePEc:udb:wpaper:uwec-2005-01-r}    
 \end{quote}
 
+\paragraph*{Limit order books} and price discovery are tightly related. \citep{RePEc:nbr:nberwo:6257} \cite{RePEc:eee:jfinec:v:17:y:1986:i:1:p:5-26}
+
+To achieve price discovery exchanges offer two order types. Limit orders, and Market orders. All orders are sent to a centralized matching engine in the exchange servers. 
+
+Market orders have a quantity but no price. 
+
+\begin{enumerate*}
+    \item "Buy 1 @ market" - an order to buy 1 unit of the asset at the market  
+\end{enumerate*}
+
+Limit orders have a quantity and a price. 
+
+\begin{enumerate*}
+    \item "Buy 1 @ 100" - an order to buy 1 unit of the asset at the market  
+\end{enumerate*}
+
+
+\paragraph*{Continuous limit order books (CLOB)} are the market micro structure that leads to price discovery \footnote{Other types of markets such as call auctions, and dealer markets, do not provide the robustness of limit orders for price discovery. \cite{RePEc:hal:journl:hal-00459785}}. There are two order types. Limit orders, where you provide your own price, with the risk of waiting to be matched. And market-orders, where you get filled immediately in return for a possible worse price.
+
 
 \subsubsection*{Evolution of Exchange}
+
 \subsubsection*{The HFT Problem}
 \subsection*{Blockchain DEX Problems}
 \subsubsection*{MEV and Public Blockchains}
