@@ -28,6 +28,10 @@
 % \title{Sidepit}
 % \maketitle
 \begin{abstract}
+    Ever  since  Satoshi  solved  peer  to  peer  digital  cash  with  Bitcoin,  people have  been  trying  to  apply  similar  techniques  to  solve  other  hard  problems. One such problem, peer to peer exchange, is one of the most difficult of these problems. An exchange is a financial market, where trading of securities occur. The purpose of an exchange is two fold;  1) for price discovery, 2) for counterparty settlement. Centralized Exchanges, have been well researched and developed in traditional finance for well over a century.  They evolved from trading under a tree, to the Chicago trading pits, to electronic exchanges with continuous limit order books. Modern exchanges provide 24/7 trading, and offer co-location for the most prolific traders, high frequency trading bots. Other decentralized exchanges aim to bring traditional centralized exchanges into a peer to peer blockchain protocol. Due to early bitcoin exchange hacks most research has been focused on the settlement utility of exchange. We focus on the price discovery utility, an emergent property of real-time trading. We present fair price discovery with decentralized exchange by solving the impossible task of consensus on total ordering of transactions to mitigate front-running.
+
+
+
     Ever since bitcoin solved peer to peer digital cash was possible, poeple have been trying to apply similar technoques to solve other hard problems. One such problem, peer to peer exchange, is one of the most difficult of these problems. 
 
 An exchange is a financial market, where trading of securities occur. The pupose of an exchange is two fold. \begin {enumerate*} [1) ]%
@@ -194,17 +198,20 @@ We start with a closed network of exchange nodes, which each node has a matching
 The distributed network of nodes come to consensus on the total ordering of transactions. This is done in two steps: 
 
 \begin{enumerate}
-    \item Every N seconds, consensus is reached on \emph{block-data}, a list of transactions from the mempool. 
-    \item An auction is held, where the highest bidder gets to reorder the transactions into a \emph{block-order}  
+    \item \emph{block-data} consensus is reached every N seconds on the full list of transactions from the mempool. 
+    \item \emph{block-order} consensus is reached via auction on each block, where the highest bidder gets to reorder the transactions in the \emph{block-data} 
 \end{enumerate}
 
 From these two simple steps we have removed the advantage of HFT co-location, the need to front-run, and for \emph{Miner Extracted Value}
 
-\paragraph*{HFT Co-Location} is no longer possible as there is no single location for the matching engine. Furthermore, the notion of \emph{being first} goes away, as all orders within the block are the same in regards to time. Also, since you can pay to \emph{be first} after the fact, there is no longer justification of cost of the HFT Arms race. 
+\paragraph*{HFT Co-Location} is no longer possible as there is no single location for the matching engine. Furthermore, the notion of \emph{being first} goes away, as all orders within the block are the same in regards to time. Also, since you can pay to \emph{be first} after the fact, there is no longer justification of cost of the HFT arms race. 
 
 \paragraph*{Front-running} by \emph{rushing} has no advantage, as the processing order is not determined by which transaction was seen first on the network. 
 
-\paragraph*{Front-running} by \emph{rushing} has no advantage, as the processing order is not determined by which transaction was seen first on the network. 
+\paragraph*{Miner Extracted Value} is no longer possible, as we come to consensus on the entire mempool, for each block. Recall, that \emph{MEV} is defined as a miner choosing, ordering or adding new transactions into a block in a way that generates economic value.  In our model, each block contains all the outstanding transactions, and the transactions in \emph{block-data} are in no particular order for processing, until after the \emph{block-order} auction. 
+
+
+
 
 Acknowledging the Condorcet paradox the impossibility of fair ordering \cite{Kelkar_2020} 
 
