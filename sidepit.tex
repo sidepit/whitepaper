@@ -69,8 +69,17 @@ Limit orders have a quantity and a price.
 
 \paragraph*{Continuous limit order books (CLOB)} are the market micro structure that leads to price discovery \footnote{Other types of markets such as call auctions, and dealer markets, do not provide the robustness of limit orders for price discovery. \cite{RePEc:hal:journl:hal-00459785}}. There are two order types. Limit orders, where you provide your own price, with the risk of waiting to be matched. And market-orders, where you get filled immediately in return for a possible worse price.
 
+The interaction between market orders matching limit orders is continuous. 
+
+The state of a CLOB in a centralized exchange is shown to produce a price discovery equilibrium. 
+
+The design of CLOB evolved from previous exchanges, Futures trading pits in Chicago reached a price discovery. 
+
+For the purpose of price discovery, the match of buyers and seller needs to be atomic, otherwise one party cam pull out of the deal. 
+
 
 \subsubsection*{Evolution of Exchange}
+ 
 
 \subsubsection*{The HFT Problem}
 \subsection*{Blockchain DEX Problems}
