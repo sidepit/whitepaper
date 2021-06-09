@@ -28,11 +28,80 @@
 % \title{Sidepit}
 % \maketitle
 \begin{abstract}
+\end{abstract}
+
+\section{Introduction}
+Ever since Satoshi solved peer to peer digital cash with the Bitcoin protocol, people have been trying to apply similar techniques to other hard problems. Peer to peer decentralized exchange (DEX), is one of the most difficult of these problems. 
+
+The purpose of an exchange in financial markets, is to first match buyers and sellers of financial assets at a \emph{market} price, and then to provide settlement to mitigate any counterparty risk. Tradition electronic exchanges are designed with the goal of reaching a  \emph{price discovery} equilibrium \cite{francioni_schwartz_2017}. Centralized exchanges (CEXs), employ continuous limit order books as a price discovery mechanism. 
+
+Due to well known centralized exchange hacks, coupled with the technical difficulty of decentralized limit order books, most DEXs are solely focused on the non-custodial settlement, rather than \emph{price discovery}. 
+
+\paragraph*{Price discovery} is a social benefit and a key goal in the design of a market structure. In fact, the goal of the architecture of an exchange mechanism, is to attract as much liquidity needed to for price discovery.  \cite{francioni_schwartz_2017}
+
+Price discovery is described in microstructure research as a search for an equilibrium price based on new external information. This new information is reflected in the traders orders, and is ultimately converted into a market price. \citep{RePEc:nbr:nberwo:6257}
+
+Some even define an exchange as ``any trading facility that has as its primary function the delivery of good price discovery'' \cite{francioni_schwartz_2017}. 
+
+However, the price discovery function of an  exchange typically receives insufficient attention in market structure discussions. This is largely attributable to the non-observability of equilibrium prices and, therefore, to the difficulty of quantifying the deviations of transaction prices from their equilibrium values \cite{francioni_schwartz_2017}
+
+
+\begin{quote}
+    price discovery is dynamic in nature, and an efficient price discovery process is characterized by the fast adjustment of market prices from the old equilibrium to the new equilibrium with the arrival of new information \cite{RePEc:udb:wpaper:uwec-2005-01-r}    
+\end{quote}
+
+
+\subsubsection*{Evolution of Exchange}
+\subsubsection*{The HFT Problem}
+\subsection*{Blockchain DEX Problems}
+\subsubsection*{MEV and Public Blockchains}
+\subsubsection*{Front-Running and Permissioned Blockchains}
+\subsubsection*{Transaction Ordering}
+\subsubsection*{Why does it not work?}
+\subsection*{New Blockchain Abstraction}
+
+
+\paragraph*{Limit order books} and price discovery are tightly related. \citep{RePEc:nbr:nberwo:6257} \cite{RePEc:eee:jfinec:v:17:y:1986:i:1:p:5-26}
+
+To achive price discovery exchanges offer two order types. Limit orders, and Market orders. All orders are sent to a centralized matching engine in the exchange servers. 
+
+
+Market orders have a quantity but no price. 
+
+\begin{enumerate*}
+    \item "Buy 1 @ market" - an order to buy 1 unit of the asset at the market  
+\end{enumerate*}
+
+Limit orders have a quantity and a price. 
+
+\begin{enumerate*}
+    \item "Buy 1 @ 100" - an order to buy 1 unit of the asset at the market  
+\end{enumerate*}
+
+
+
+Price discovery happens by pooling liquidity from many buyers and many sellers. 
+
+Decentralized exchanges 
+
+
+To date most decentralized exchanges (DEXs) forgoes the traditional mechanism employed by tradition centralized exchanges (CEXs), namely limit order books (LOBs).  
+
+Many have attempted to design decentralized exchanges 
+
+
+
+
+Decentralized exchanges (DEX) 
+
+
+
+
     Ever  since  Satoshi  solved  peer  to  peer  digital  cash  with  Bitcoin,  people have  been  trying  to  apply  similar  techniques  to  solve  other  hard  problems. One such problem, peer to peer exchange, is one of the most difficult of these problems. An exchange is a financial market, where trading of securities occur. The purpose of an exchange is two fold;  1) for price discovery, 2) for counterparty settlement. Centralized Exchanges, have been well researched and developed in traditional finance for well over a century.  They evolved from trading under a tree, to the Chicago trading pits, to electronic exchanges with continuous limit order books. Modern exchanges provide 24/7 trading, and offer co-location for the most prolific traders, high frequency trading bots. Other decentralized exchanges aim to bring traditional centralized exchanges into a peer to peer blockchain protocol. Due to early bitcoin exchange hacks most research has been focused on the settlement utility of exchange. We focus on the price discovery utility, an emergent property of real-time trading. We present fair price discovery with decentralized exchange by solving the impossible task of consensus on total ordering of transactions to mitigate front-running.
 
 
 
-    Ever since bitcoin solved peer to peer digital cash was possible, poeple have been trying to apply similar technoques to solve other hard problems. One such problem, peer to peer exchange, is one of the most difficult of these problems. 
+   
 
 An exchange is a financial market, where trading of securities occur. The pupose of an exchange is two fold. \begin {enumerate*} [1) ]%
 \item for price discovery, \item for counter party settlement. \end {enumerate*}. 
@@ -43,9 +112,9 @@ Decentralized exchange (DEX), aims to bring tradition centralized exchanges into
 
 We present a DEX with focus on providing price discovery. Our solution, Fair Price Disovery (FPD) 
 
-\end{abstract}
 
-\section{Introduction}
+
+\section{Introduction2}
 Ever since bitcoin solved peer to peer digital cash was possible, poeple have been trying to apply similar technoques to solve other hard problems. One such problem, peer to peer exchange, is one of the most difficult of these problems. 
 
 An exchange is a financial market, where trading of securities occur. The pupose of an exchange is two fold. \begin {enumerate*} [1) ]%
