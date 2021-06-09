@@ -11,9 +11,6 @@
 \author{Yehuda Jay Berg \\jaybny@gmail.com}
 \date{May 2021}
 
-
-\newtheorem{theorem}{Theorem}
-
 \begin{document}
 \parindent 0cm
 \parskip   6pt
@@ -28,6 +25,7 @@
 % \title{Sidepit}
 % \maketitle
 \begin{abstract}
+Ever  since  Satoshi  solved  peer  to  peer  digital  cash  with  Bitcoin,  people have  been  trying  to  apply  similar  techniques  to  solve  other  hard  problems. One such problem, peer to peer exchange, is one of the most difficult of these problems. An exchange is a financial market, where trading of securities occur. The purpose of an exchange is two fold;  1) for price discovery, 2) for counterparty settlement. Centralized Exchanges, have been well researched and developed in traditional finance for well over a century.  They evolved from trading under a tree, to the Chicago trading pits, to electronic exchanges with continuous limit order books. Modern exchanges provide 24/7 trading, and offer co-location for the most prolific traders, high frequency trading bots. Other decentralized exchanges aim to bring traditional centralized exchanges into a peer to peer blockchain protocol. Due to early bitcoin exchange hacks most research has been focused on the settlement utility of exchange. We focus on the price discovery utility, an emergent property of real-time trading. We present fair price discovery with decentralized exchange by solving the impossible task of consensus on total ordering of transactions to mitigate front-running.
 \end{abstract}
 
 \section{Introduction}
@@ -89,208 +87,9 @@ For the purpose of price discovery, the match of buyers and seller needs to be a
 \subsubsection*{Why does it not work?}
 \subsection*{New Blockchain Abstraction}
 
-
-\paragraph*{Limit order books} and price discovery are tightly related. \citep{RePEc:nbr:nberwo:6257} \cite{RePEc:eee:jfinec:v:17:y:1986:i:1:p:5-26}
-
-To achive price discovery exchanges offer two order types. Limit orders, and Market orders. All orders are sent to a centralized matching engine in the exchange servers. 
-
-
-Market orders have a quantity but no price. 
-
-\begin{enumerate*}
-    \item "Buy 1 @ market" - an order to buy 1 unit of the asset at the market  
-\end{enumerate*}
-
-Limit orders have a quantity and a price. 
-
-\begin{enumerate*}
-    \item "Buy 1 @ 100" - an order to buy 1 unit of the asset at the market  
-\end{enumerate*}
-
-
-
-Price discovery happens by pooling liquidity from many buyers and many sellers. 
-
-Decentralized exchanges 
-
-
-To date most decentralized exchanges (DEXs) forgoes the traditional mechanism employed by tradition centralized exchanges (CEXs), namely limit order books (LOBs).  
-
-Many have attempted to design decentralized exchanges 
-
-
-
-
-Decentralized exchanges (DEX) 
-
-
-
-
-    Ever  since  Satoshi  solved  peer  to  peer  digital  cash  with  Bitcoin,  people have  been  trying  to  apply  similar  techniques  to  solve  other  hard  problems. One such problem, peer to peer exchange, is one of the most difficult of these problems. An exchange is a financial market, where trading of securities occur. The purpose of an exchange is two fold;  1) for price discovery, 2) for counterparty settlement. Centralized Exchanges, have been well researched and developed in traditional finance for well over a century.  They evolved from trading under a tree, to the Chicago trading pits, to electronic exchanges with continuous limit order books. Modern exchanges provide 24/7 trading, and offer co-location for the most prolific traders, high frequency trading bots. Other decentralized exchanges aim to bring traditional centralized exchanges into a peer to peer blockchain protocol. Due to early bitcoin exchange hacks most research has been focused on the settlement utility of exchange. We focus on the price discovery utility, an emergent property of real-time trading. We present fair price discovery with decentralized exchange by solving the impossible task of consensus on total ordering of transactions to mitigate front-running.
-
-
-
-   
-
-An exchange is a financial market, where trading of securities occur. The pupose of an exchange is two fold. \begin {enumerate*} [1) ]%
-\item for price discovery, \item for counter party settlement. \end {enumerate*}. 
-
-Centralized Exchanges (CEX), have been well researched and developed in traditional finaince for well over a century. [exchage cite] They  evoled from trading under a tree, the Chicago trading pits, to electroic exchanges with continuous limit order books. Modern exchanges provide 24/7 trading, and offer co-location for the most prolfic traders, High Freaquency Trading (HFT) bots. 
-
-Decentralized exchange (DEX), aims to bring tradition centralized exchanges into a peer to peer blockchain protocol. Due to early bitcoin CEX hacks, most DEXs have been focused on the settlement utility of exchange. As price discovery is an emergent property of the real-time trading and difficult to research. 
-
-We present a DEX with focus on providing price discovery. Our solution, Fair Price Disovery (FPD) 
-
-
-
-\section{Introduction2}
-Ever since bitcoin solved peer to peer digital cash was possible, poeple have been trying to apply similar technoques to solve other hard problems. One such problem, peer to peer exchange, is one of the most difficult of these problems. 
-
-An exchange is a financial market, where trading of securities occur. The pupose of an exchange is two fold. \begin {enumerate*} [1) ]%
-\item for price discovery, \item for counter party settlement. \end {enumerate*}. 
-
-Centralized Exchanges (CEX), have been well researched and developed in traditional finaince for well over a century. [exchage cite] They  evoled from trading under a tree, the Chicago trading pits, to electroic exchanges with continuous limit order books. Modern exchanges provide 24/7 trading, and offer co-location for the most prolfic traders, High Freaquency Trading (HFT) bots. 
-
-Decentralized exchange (DEX), aims to bring tradition centralized exchanges into a peer to peer blockchain protocol. Due to early bitcoin CEX hacks, most DEXs have been focused on the settlement utility of exchange. As price discovery is an emergent property of the real-time trading and difficult to research. 
-
- 
-The word "central" is part of the common definitio of an exchange. "A central place where buying and sellers come to finf price and execute trades. 
-
-The pupose of exchage is two fold. 1 - for price disoverry [cite]  2 - for counter party settlement 
-
-Due to early bitcoin exchange hacks, Decentrlized Exchange or (DEX), has been mostly focused on the non-custodial side for the settlement utility. 
- 
-We focusing on the real public service of an Exchange, the price disovery utility. We design price discovery within a DEX, with a pupose of "Fair Price Discovery". 
-
-With, Fair Price Disovery (FPD), as our goal. We focus on a mechanism designed exchange, for reaching equalibriam which produces price. 
-
-Taking inspiratiuon from Rational Protocol Design analysis of Bitcoin, and looking back to the origional Bitcoin white-paper. 
-
-
-examaning the state of teh art in price-disovery, High Freaquernncy Market Making, and electronic exchange matching engines  
-
-Since Bitcoin showed us how peer to peer electroic cash was possible, we have researching if and how peer-to-peer exchange was possible. 
-
-Exchanges are a critial part of the finanical markets.  
-
-Ecological balalnce otherwise the order-driven market can colapse 
-Transparency is an importtant feature 
-
-first to win is most important 
-
-
-\subsection*{Price Discovery}
-Price disovery as a key goal in the design of the market structure. In fact, the goal of the architecure of an exchange meachanism, is to attract as much liquidity needed to for price discovery.  \cite{francioni_schwartz_2017}
-
-Price discovery is described in microstruture research as a search for an equalibrian price, from new external information. This new information is reflected in the traders orders, and is ultimatly coverted into a market price. \citep{RePEc:nbr:nberwo:6257}
-
-\begin{quote}
-    price discovery is dynamic in nature, and an efficient price discovery process is characterized by the fast adjustment of market prices from the old equilibrium to the new equilibrium with the arrival of new information \cite{RePEc:udb:wpaper:uwec-2005-01-r}    
-\end{quote}
-
-
-\begin{quote}
-From a definitional perspective, any trading facility that has as its primary function the delivery of good price discovery can, de facto at least, be considered an exchange. Unfortunately, however, the price discovery function of an  exchange typically receives insufficient attention in market structure discussions. This is largely attributable to the non-observability of equilibrium prices and, therefore, to the difficulty of quantifying the deviations of transaction prices from their equilibrium values \cite{francioni_schwartz_2017}
-\end{quote} 
-
-
-\paragraph*{Limit order books} and price discovery are tightly related. \citep{RePEc:nbr:nberwo:6257} \cite{RePEc:eee:jfinec:v:17:y:1986:i:1:p:5-26}
-
-To achive price discovery exchanges offer two order types. Limit orders, and Market orders. All orders are sent to a centralized matching engine in the exchange servers. 
-
-
-Market orders have a quantity but no price. 
-
-\begin{enumerate*}
-    \item "Buy 1 @ market" - an order to buy 1 unit of the asset at the market  
-\end{enumerate*}
-
-Limit orders have a quantity and a price. 
-
-\begin{enumerate*}
-    \item "Buy 1 @ 100" - an order to buy 1 unit of the asset at the market  
-\end{enumerate*}
-
-
-
-\paragraph*{Continuous limit order books (CLOB)}   are the market micro struture that leads to price discovery \footnote{Other types of markets such as call auctions, and dealer markets, dont provide the robustness of limit orders for price discovery. \cite{RePEc:hal:journl:hal-00459785}}. There are two order types. Limit orders, where you provide your own price, with the risk of waiting to be matched. And market-orders, where you get filled immediatly in return for a possible worse price.
-
-
-Directional liquiidy traders - use market orders  
-Market Makers - use limit orders 
-
-HFT-bandit  
-
-\paragraph*{Adverse Selection}
-
-Show HFT Alpha 
-Show how market-orders are the cryponite  
-
-
-\subsection*{Perfect Alpha and the High Freaquency Trading (HFT) arms race}
-We define \emph{Perfect Alpha} as recurring risk-less real-time arbitrage with positive EV. Beleive it or not, \emph{Perfect Alpha} is a product of centralized exchanges and continous limit-order books. 
-
-
-\begin{theorem}
-    When 2 or more orders coem in after your order, there exists a free arbitrage, provided  \begin {enumerate*} [1) ]%
-    \item each order is for 1 share at a time, \item you are first to act \end {enumerate*}. 
-    Perfect Alpha exists in Continous Limit Order books. 
-\end{theorem}
-
-
-
-      \begin{enumerate}
-        \item HFT - "Buy 1 @ 100"
-        \item Bob - "Buy 1 @ 100"  
-      \end{enumerate}
-    
-      \begin{center}
-        \begin{tabular}{ |c|c|c|c| }
-        \hline
-        qty & bid & ask & qty \\
-        \hline
-        2 & 100 &  &  \\
-        \hline
-        \end{tabular}
-      \end{center}
-    
-\subsection{Decentralized Limit Order Books} make these problems much worse, by removing the one defensive market-order 
-
-\subsection{Standard Blockchain Solutions} 
-
-\subsubsection{Permissionless} 
-
-\paragraph*{Ethereum} smart contracts create MEV
-
-MEV and front-running 
-
-Uniswap - 
-
-Total Ordering Consenusns 
-
-\subsubsection{Permissioned blockchains} remove the issues with open blockchains, and uses BFT techniques 
-
-
-\subsubsection{Why does bitcoin work} 
-Only when asking why? do we come with a new theory \emph{Ration Design}
-
-\subsubsection{Why does it not work with Ethereum, Aequitas and BFT?}
-Theproblem is abtractions. Solving generic solution with frameworks vs solving for a spefici utility 
-
-\section{A new blockchain abstraction} 
-Only when designing for a specific utility are we able to use designer intent vc averserial modiivations 
-
-\begin{enumerate}
-    \item First design with intent using Mechanism Design 
-    \item Release the code and protocol
-    \item Test results from empiracle evidense 
-\end{enumerate}
-
-We now have mechanism designed system that matched a reational design theory of decentrlaized exchange. 
-
 \section{Fair Price Discovery} 
 
-\section{Decentralized Limit Order Books}
+\subsection{Decentralized Limit Order Books}
 We start with a closed network of exchange nodes, which each node has a matching-engine and maintains a CLOB, much like a centralized exchange. 
 
 The distributed network of nodes come to consensus on the total ordering of transactions. This is done in two steps: 
@@ -308,97 +107,7 @@ From these two simple steps we have removed the advantage of HFT co-location, th
 
 \paragraph*{Miner Extracted Value} is no longer possible, as we come to consensus on the entire mempool, for each block. Recall, that \emph{MEV} is defined as a miner choosing, ordering or adding new transactions into a block in a way that generates economic value.  In our model, each block contains all the outstanding transactions, and the transactions in \emph{block-data} are in no particular order for processing, until after the \emph{block-order} auction. 
 
-
-
-
-Acknowledging the Condorcet paradox the impossibility of fair ordering \cite{Kelkar_2020} 
-
-
-
-In addition to a CLOB, each node also maintains the state of all accounts mapped to a \emph{pub-key} 
-
-\subsection{Centralized Fair Price Discovery}
-Starting with a centralized exchange we create a distributed limit order book to reach fair price discovery. Each exchange member will control its own matching-engine node and maintain an orderbook state.       
-
-\paragraph*{Create a network of known nodes}, with each node identified by an ip adress and a \emph{pub-key} based addess.     
-
-\paragraph*{Nodes crate new transactions}, and broadcast them to each node onthe network. Transactions propogate through the network via a gossip   with each node identified by an ip adress and a \emph{pub-key} based addess.     
-
-
-\subsection{Preliminaries}
-Order book transaction are like advertisements. Sender wants to broadcast intent. Intent of other seeing your transactions eliminates the commit/reveal strategies 
-
-\begin{enumerate}
-    \item Full transpareency - no commit-reveal 
-    \item Remove rent-seeking co-location 
-    \item Acknolege impossibility of total-ordering Consenusns
-    \item Make front-runnig explicit, but limited to reording - no inseting new orders 
-\end{enumerate}
-
-Centralized matching gives market-order privacy in return for co-location issues 
-Decentralized matching removes co-location advantage in return for loss of market-order privacy 
-
-\paragraph*{Covert Adversaries} we learn that just being able to show cheating can reduce it. 
-
-\subsection{On-Chain Solution}
-We focus on solving for decentralized matching engine that results in price discovery. Note, an on-chain solution with assets controls by the procol eliminates the centralized custody and settlement issues. 
-
-Goal is to eliminate front-running when there is consensus on order, and allow explic front-running where total order consensus is not possible.
-
-Step1: Hybrid blockchain, acts permissioned with BFT consensus by each node selecting quarum slices  ( Stellar )
-Step2: Node select quarums based on reputation and trading activity. Bigger trading operations with good uptime, and heavy volume, will be sleected by many. 
-Step3: Reach consensus on mempool on past 5 seconds. 
-Step4: Pay to re-order blocks by bribing bitcoin miners, or paying centralized exchange operator or buring coins. 
-
-
-\subsubsection{Order transaction types} - limit and mraket and cancels. 
-
-Buy 1 at 100
-Sell 1 at 101 
-Sell 1 at market
-Cancel order 
-
-Seperating consensus on the orders from the state and result of thos orders. 
-
-Order-book is determinisitic based on the set of trasnactions and the ordering of those trasactions 
-
-As a new on-chain protocol, with no dependance on smart-contracts or layer 1 like ethereum. The state and code is contained within the node. 
-
-Node maintains a matching-engine and the state of the market in real-time. 
-Nodes gossip they ordering in the background - this is not used for consenus but for preventing covert adversaries 
-Node reach quarum with slices on mempool
-Nodes use results of auction, for reordering block  
-
-Node maintains multiple states by looping over all permutations. Most permutation will not change the state. 
-When a permutation changes state the node will compare results and pur a value on the reults - and enter auction when needed. 
-
-Honest nodes will agree to default to actual real-time "true" orderings. 
-
-\paragraph*{Example Honest Front-running} 
-Limit order cancelled immediatly after getting filled by a market-order 
-
-\paragraph*{Example Dis-Honest Front-running} 
-Limit order inserted with a higher price to standing limit-order to front-run the fills, due to new market move 
-
-In this example, the adversary will try to get a new order in at the end of the time-block. 
-Note: doing this immediatly becomes honest front-running 
-
-Difference between honest and dis-honets front-running, is when 
-
-\paragraph*{Example2 Dis-Honest Front-running} 
-Limit order cancelled immediatly after getting filled by a market-order, but gossiping the cancel before gossiping the market order. 
-
-\subsubsection{Designer intented result} is a decentralized matching engine where no front-running occurs in real-time. 
-
-No advantage to real-time front-runnings 
-Disadvantage by losing honest reputation, where nodes will not sure to add you to their quarum slice.  
-
-\subsubsection{note}
-note how we dont have liveleness or consitancy or censhorship resistance guarnetees, as those are concepts for the design of protols with differant utilities. As we are seeking the utility of Fair Price Discovery from a decentralized on-chain blockchain matching engine exchange protocol. 
-
-
-\section{Results}
-\cite{ChenA} 
+ 
 \newpage
 \bibliography{sidepit}{}
 \bibliographystyle{plain}
