@@ -78,9 +78,35 @@ The design of CLOB evolved from previous exchanges, Futures trading pits in Chic
 For the purpose of price discovery, the match of buyers and seller needs to be atomic, otherwise one party cam pull out of the deal. 
 
 
-\subsubsection*{Evolution of Exchange}
- 
+\subsection*{Evolution of Exchange}
+This design of CLOB evolved from previous exchanges. Futures trading pits in Chicago reached price disovery equalibrium. 
 
+\subsubsection*{Open Outcry}
+
+Before electronic markets, an open outcry system in physical trading pits were setup at the exchange place. Buyers and sellers would be bunched up in close proximity to each other, and they would verbalize their intention to buy or sell, the quantity they wish to trade, and the price they are willing to accept or pay. Traders would seek out the best prices by verbally filling with their counterparties. 
+
+\textbf{A match in a trading is the real atomic swap} 
+
+For the purpose of Price Discovery what needs to atomic is the  match, otherwise one party can pull out of the deal. CME provides this quanrentee. 
+
+\textbf{Atomic swaps DEXs, that allow one side to back out does not provide price discovery.}
+
+Backing out of a trade is the most used move by participants in model exchanges. In fact, 60\%  of all orders placed on centralized exchanges are cancelled within 1 millisecond. 
+
+Going electronic exchanges were faced with asynchronous message over IP. No longer can buyers and sellers interact simultaneously. Market makers in NASDAQ and specialist in NYSE were tasks with providing liquidity and filling orders. 
+
+Exchanges added anti-frontrunning rules, so for profit MMs did not abuse the system. Rules, such as  were made not to prevent front-running, but to ensure price discovery. 
+
+
+
+
+
+When trading went electronic, the exchange place became a server, and traders would connect to these servers, and send electronic orders containing price and quantity. The exchange would maintain a limit-order book, the order-book containing all the bids with prices too low to match sellers, and all the ask with prices too high to match buyers. The matching engine is used to maintain the book and generate fills, in a price and time priority ** figure x **. 
+
+The highest bid prices and lowest ask prices would be matched first. When a buy order from multiple traders have the same price, the matching is done based on the time that the exchange received each order. First in, first out. Time is so critical that a large portion of exchange revenue comes from co-location services, where firms pay millions to put their servers within feet of the matching engines.  
+
+
+A match in a trading pit is the real atomic swap. 
 \subsubsection*{The HFT Problem}
 \subsection*{Blockchain DEX Problems}
 \subsubsection*{MEV and Public Blockchains}
