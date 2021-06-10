@@ -88,14 +88,14 @@ For the purpose of Price Discovery what needs to be atomic is the  match, otherw
 
 \textbf{Atomic swap DEXs, that allow one side to back out does not provide price discovery.}
 
-Backing out of a trade is the most used move by participants in model exchanges. In fact, 60\%  of all orders placed on centralized exchanges are cancelled within 1 millisecond. \cite{notsure}  
+Backing out of a trade is the most used move by participants in modern exchanges. In fact, 60\%  of all orders placed on centralized exchanges are cancelled within 1 millisecond. \cite{notsure}  
 
-Going electronic exchanges were faced with asynchronous message over IP. No longer can buyers and sellers interact simultaneously. Market makers in NASDAQ and specialist in NYSE were tasked with providing liquidity and filling orders. 
+Going electronic, exchanges were faced with asynchronous message over IP. No longer can buyers and sellers interact simultaneously. Market makers in NASDAQ and specialist in NYSE were tasked with providing liquidity and filling orders. 
 
-Exchanges added anti-front-running rules so for profit MMs did not abuse the system. Rules, such as Reg NMS were made not to prevent front-running 
+Exchanges added anti-front-running rules, so for profit MMs did not abuse the system. Rules, such as Reg NMS were made, not to prevent front-running, 
 but to ensure price discovery. \cite{notsure} 
 
-Early market maker based electronic exchanges, such as NASDAQ, were facing problems analogous to the problem of Miner Extracted Value (MEV) we see in Ethereum today. Where miners Not only can front-run but they can add their own orders in after seeing everyone elses. Exchanges feared this would lead to loss of confidence in the market which would affect the fragile state where the equilibrium of price discovery exists. 
+Early market maker based electronic exchanges, such as NASDAQ, were facing problems analogous to the problem of Miner Extracted Value (MEV) we see in Ethereum today. Where miners not only can front-run but they can add their own orders in after seeing everyone elses. Exchanges feared this would lead to loss of confidence in the market which would affect the fragile state where the equilibrium of price discovery exists. 
 
 When designing a DEX, we keep in mind how obvious unfairness will ultimately hurt liquidity, the exchange overall and Price Discovery in particular. In fact, the main issue with decentralized LOB is not the MEV or front-running, but the loss of confidence stemming from those problems.  
 
@@ -118,24 +118,34 @@ $t_2$ IBM files bankruptcy
 At $t_0$ you place limit order to buy 1 share of IBM at \$100, and at $t_2$ you learn that IBM has filed bankruptcy, and you immediately cancel. However at $t_2$ your adversary also hears the news, and sends a sell order to attempt to fill you. Its a classic race, fill vs cancel.
 
 $t_2$ hero send cancel order to exchange  \\
-$t_2$ villan send sell 1 \$IBM @ market \\ 
+$t_2$ villan send sell 1 \$IBM @ market  
 
 Since the villans reaction time is only 1 second while yours is 2 seconds, his orders hits the matching engine at $t_3$ , while Heros cancel doesnt get there until $t_4$. Hero ends up buying IBM after learning they filed bankruptcy! This is an example of \emph{Adverse Selection Risk} (ASR). In fact, all limit orders sitting on the book are subject to ASR. Special \emph{HFT Bandit} bots, are designed just to snip these "stale" limit orders. 
 
 $t_0$ limit buy 1 \$IBM @ 100 \\
 $t_1$ cancel \\
-$t_2$ iif ( no bad news ) limit buy 1 \$IBM @ 100 \\
+$t_2$ if ( no bad news ) limit buy 1 \$IBM @ 100 \\
 $t_3$ cancel 
 
-If instead your trading plan was to \emph{flash} all your orders, by sending and immediately canceling. You would have already canceled at $t_1$ and after learning about the bankruptcy, you would have not send the new buy order ta $t_2$
+If instead your trading plan was to \emph{flash} all your orders, by sending and immediately canceling. You would have already canceled at $t_1$ and after learning about the bankruptcy, you wouldn't have sent the new buy order at $t_2$
 
-The objective of Market Maker is to buy at bid and sell at ask over and over again. An adversary reacting faster than them, on the news of an IBM bankruptcy is an example of ASR . 
+The objective of the Market Maker is to buy at bid and sell at ask over and over again. An adversary reacting faster than them, on the news of an IBM bankruptcy, is an example of ASR . 
 
 Reducing ASR has lead to a massive HFT arms race \cite{notsure} leaving only a handful of players left, till this day. HFT players pay exchanges co-location fees to be as close to the matching engine as possible. 
 
-While \emph{flashing} orders is a defensive move done by even the second fasted bot, it is still not as destructive as front-running, when it comes to interfering with the price discovery mechanism. 
+While \emph{flashing} orders is a defensive move done by even the second fastest bot it is still not as destructive as front-running when it comes to interfering with the price discovery mechanism. 
 
 HFT bots today can only \emph{front-run} public news and data, while old school specialists got to \emph{front-run} their adversaries orders. 
+
+\paragraph{Adverse Selection} (AS) has been well studied and defined in relation to traditional centralized exchange trades. \emph{AS} is when their order to buy, sell, or cancel is only executed when its not in your best interest, and is never filled, when there is a clear profit. 
+
+Numerical models suggest that cancellations is the optimal strategy to avoid \emph{AS}, and that cancelling and reinserting the same order is an optimal implementation. \cite{Lehalle}  Empirical evidence confirms that almost half of all cancellations are resubmitted within one millisecond. \cite{Menkveld2} 
+
+Prior work also shows how speed is directly related to profits by reducing \emph{AS} \cite{Lehalle},  and the profitable response times is in the order of microseconds. \cite{Menkveld2} 
+
+\paragraph{Information Technology:} In addition to speed, HFT make profits from information technology, by modeling the order imbalances of the large institutions. Studies show the overall market-quality improves when \emph{HFT} profits from being informed, and declines when they profit from speed. \cite{Menkveld2}
+
+>>>> How did someone measure quality when we cannot say what the true price is in a given secnod? Seems like there were a lot of assumptions made. Not sure we want to dig in to this but that's what's comes to my mind when reading it <<<<<<<
 
  
 \subsection*{Blockchain DEX Problems}
@@ -144,11 +154,21 @@ With decentralized limit order books, \emph{HFT Bots} can now front-run like the
 
 DEXs with CLOB cannot enforce the anti front-running rules, seen in early electronic exchanges, which kills liquidity and price discovery. 
 
-DEXs cant prevent front-running, because decentralized consensus in limit order books require consensus on total ordering of transactions, even within a block in a blockchain. 
+DEXs cant prevent front-running, because decentralized consensus in limit order books require consensus on total ordering of transactions within blocks on a blockchain. 
+
+
+\subsubsection*{Front-Running and Permissioned Blockchains}
+Front-running is when an adversary sees an honest transaction on the network, and based on that information creates a new transaction in an attempt to beat the original transaction to processing. See Figure \ref{fig:front-running}
+
+Blockchains by design are decentralized with asynchronous transactions, meaning even honest nodes will sometimes receive transactions in different orders. So when a protocol is \emph{order dependent}, front-running attacks are possible.
+
+\begin{figure}[ht]
+  \centering \includegraphics[scale=0.4]{frontrunning3-crop.pdf}
+  \caption{Frontrunning in BFT Blockchain - Node1 reads the Users Transaction - \emph{TX1}, and Front runs them with \emph{TX2}, creating \emph{Adverse Selection Risk} for the User}\label{fig:front-running}
+\end{figure}
 
 
 \subsubsection*{MEV and Public Blockchains}
-\subsubsection*{Front-Running and Permissioned Blockchains}
 \subsubsection*{Transaction Ordering}
 \subsubsection*{Why does it not work?}
 \subsection*{New Blockchain Abstraction}
