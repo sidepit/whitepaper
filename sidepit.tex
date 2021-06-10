@@ -7,7 +7,7 @@
 \usepackage{natbib}
 \usepackage[inline, shortlabels]{enumitem}
 \RequirePackage[a4paper,top=3.5cm,left=3cm,right=3cm,bottom=2.4cm]{geometry}
-\title{Fair Price Discovery with Decentralized Exchange}
+\title{Sidepit: Fair Price Discovery via Decentralized Exchange}
 \author{Yehuda Jay Berg \\jaybny@gmail.com}
 \date{May 2021}
 
@@ -25,18 +25,17 @@
 % \title{Sidepit}
 % \maketitle
 \begin{abstract}
-\textbf
-\textbf{Ever }since  Satoshi  solved  peer  to  peer  digital  cash  with  Bitcoin,  people have  been  trying  to  apply  similar  techniques  to  solve  other  hard  problems. One such problem, peer to peer exchange, is one of the most difficult of these problems. An exchange is a financial market, where trading of securities occur. The purpose of an exchange is two fold;  1) for price discovery, 2) for counterparty settlement. Centralized Exchanges, have been well researched and developed in traditional finance for well over a century.  They evolved from trading under a tree, to the Chicago trading pits, to electronic exchanges with continuous limit order books. Modern exchanges provide 24/7 trading, and offer co-location for the most prolific traders, high frequency trading bots. Other decentralized exchanges aim to bring traditional centralized exchanges into a peer to peer blockchain protocol. Due to early bitcoin exchange hacks most research has been focused on the settlement utility of exchange. We focus on the price discovery utility, an emergent property of real-time trading. We present fair price discovery with decentralized exchange by solving the impossible task of consensus on total ordering of transactions to mitigate front-running.
+Ever since  Satoshi  solved  peer  to  peer  digital  cash  with  Bitcoin,  people have  been  trying  to  apply  similar  techniques  to  solve  other  hard  problems. One such problem, peer to peer exchange, is one of the most difficult of these problems. An exchange is a financial market, where trading of securities, assets, futures, commodities etc occur. The purpose of an exchange is two fold;  1) for price discovery, 2) for counterparty settlement. Centralized Exchanges, have been well researched and developed in traditional finance for well over a century.  They evolved from trading under a tree, to the Chicago trading pits, to electronic exchanges with continuous limit order books. Modern exchanges provide 24/7 trading, and offer co-location for the most prolific traders, high frequency trading bots. Other decentralized exchanges aim to bring traditional centralized exchanges into a peer to peer blockchain protocol. Due to early bitcoin exchange hacks most research has been focused on the settlement utility of exchange. We focus on the price discovery utility, an emergent property of real-time trading. We present fair price discovery with decentralized exchange by solving the impossible task of consensus on total ordering of transactions to mitigate front-running.
 \end{abstract}
 
 \section{Introduction}
 Ever since Satoshi solved peer to peer digital cash with the Bitcoin protocol, people have been trying to apply similar techniques to other hard problems. Peer to peer decentralized exchange (DEX), is one of the most difficult of these problems. 
 
-The purpose of an exchange in financial markets, is to first match buyers and sellers of financial assets at a \emph{market} price, and then to provide settlement to mitigate any counterparty risk. Tradition electronic exchanges are designed with the goal of reaching a  \emph{price discovery} equilibrium \cite{francioni_schwartz_2017}. Centralized exchanges (CEXs), employ continuous limit order books as a price discovery mechanism. 
+The purpose of an exchange in financial markets, is to first match buyers and sellers of financial assets at a \emph{market} price, and then to provide settlement to mitigate any counterparty risk. Traditional electronic exchanges are designed with the goal of reaching a  \emph{price discovery} equilibrium \cite{francioni_schwartz_2017}. Centralized exchanges (CEXs), employ continuous limit order books as a price discovery mechanism. 
 
 Due to well known centralized exchange hacks, coupled with the technical difficulty of decentralized limit order books, most DEXs are solely focused on the non-custodial settlement, rather than \emph{price discovery}. 
 
-\paragraph*{Price discovery} is a social benefit and a key goal in the design of a market structure. In fact, the goal of the architecture of an exchange mechanism, is to attract as much liquidity needed to for price discovery.  \cite{francioni_schwartz_2017}
+\paragraph*{Price discovery} is a social benefit and a key goal in the design of a market structure. In fact, the goal of the architecture of an exchange mechanism, is to attract as much liquidity as is needed for price discovery.  \cite{francioni_schwartz_2017}
 
 Price discovery is described in microstructure research as a search for an equilibrium price based on new external information. This new information is reflected in the traders orders, and is ultimately converted into a market price. \citep{RePEc:nbr:nberwo:6257}
 
@@ -95,14 +94,13 @@ Going electronic, exchanges were faced with asynchronous message over IP. No lon
 Exchanges added anti-front-running rules, so for profit MMs did not abuse the system. Rules, such as Reg NMS were made, not to prevent front-running, 
 but to ensure price discovery. \cite{notsure} 
 
-Early market maker based electronic exchanges, such as NASDAQ, were facing problems analogous to the problem of Miner Extracted Value (MEV) we see in Ethereum today. Where miners not only can front-run but they can add their own orders in after seeing everyone elses. Exchanges feared this would lead to loss of confidence in the market which would affect the fragile state where the equilibrium of price discovery exists. 
+Early market maker based electronic exchanges, such as NASDAQ, were facing problems analogous to the problem of Miner Extracted Value (MEV) we see in Ethereum today. Where miners can not only front-run but can also add their own orders after seeing everyone else's. Exchanges feared this would lead to loss of confidence in the market which would affect the fragile state where the equilibrium of price discovery exists. 
 
-When designing a DEX, we keep in mind how obvious unfairness will ultimately hurt liquidity, the exchange overall and Price Discovery in particular. In fact, the main issue with decentralized LOB is not the MEV or front-running, but the loss of confidence stemming from those problems.  
-
+When designing a DEX, we keep in mind how obvious unfairness will ultimately hurt liquidity, the exchange overall, and Price Discovery in particular. In fact, the main issue with decentralized LOB is not the MEV or front-running but the loss of confidence stemming from those problems.  
 
 
 \subsubsection*{The HFT Problem}
-\textbf{The reason 60\% of all ordes are immediatly canceled in todays markets is due to Continuous Limit Order Books (CLOBs).}
+\textbf{The reason 60\% of all ordes are immediately canceled in today's markets is due to Continuous Limit Order Books (CLOBs).}
 
 At the turn of the 20th century, exchanges adopted CLOB. No more front-running or market-makers. They were replaced with High Frequency Market Makers (HFT-MM) 
 
@@ -117,10 +115,10 @@ $t_2$ IBM files bankruptcy
 
 At $t_0$ you place limit order to buy 1 share of IBM at \$100, and at $t_2$ you learn that IBM has filed bankruptcy, and you immediately cancel. However at $t_2$ your adversary also hears the news, and sends a sell order to attempt to fill you. Its a classic race, fill vs cancel.
 
-$t_2$ hero send cancel order to exchange  \\
-$t_2$ villan send sell 1 \$IBM @ market  
+$t_2$ Hero send cancel order to exchange  \\
+$t_2$ Villan send sell 1 \$IBM @ market  
 
-Since the villans reaction time is only 1 second while yours is 2 seconds, his orders hits the matching engine at $t_3$ , while Heros cancel doesnt get there until $t_4$. Hero ends up buying IBM after learning they filed bankruptcy! This is an example of \emph{Adverse Selection Risk} (ASR). In fact, all limit orders sitting on the book are subject to ASR. Special \emph{HFT Bandit} bots, are designed just to snip these "stale" limit orders. 
+Since the Villan's reaction time is only 1 second while yours is 2 seconds, his orders hits the matching engine at $t_3$ , while Hero's cancel doesn't get there until $t_4$. Hero ends up buying IBM after learning they filed bankruptcy! This is an example of \emph{Adverse Selection Risk} (ASR). In fact, all limit orders sitting on the book are subject to ASR. Special \emph{HFT Bandit} bots, are designed just to snip these "stale" limit orders. 
 
 $t_0$ limit buy 1 \$IBM @ 100 \\
 $t_1$ cancel \\
@@ -145,20 +143,22 @@ Prior work also shows how speed is directly related to profits by reducing \emph
 
 \paragraph{Information Technology:} In addition to speed, HFT make profits from information technology, by modeling the order imbalances of the large institutions. Studies show the overall market-quality improves when \emph{HFT} profits from being informed, and declines when they profit from speed. \cite{Menkveld2}
 
->>>> How did someone measure quality when we cannot say what the true price is in a given secnod? Seems like there were a lot of assumptions made. Not sure we want to dig in to this but that's what's comes to my mind when reading it <<<<<<<
 
  
 \subsection*{Blockchain DEX Problems}
 
-With decentralized limit order books, \emph{HFT Bots} can now front-run like the old school specialist by reacting to adversarial orders and jumping ahead. 
+Issues arise when attempting to design a decentralized exchange. In fact, the more decentralized the bigger the problem. 
 
+\begin{description}
+\item[Adverse Selection in Centralized Exchanges] is a risk on all limit orders, due to adversarial \emph{HFT} time advantage. 
+\item[Front Running in Permissioned Blockchain] is when an adversary sees an honest transaction on the network, and based on that information creates a new transaction in an attempt to beat the original transaction to processing. \footnote{front-running is also known as a \emph{rushing} attack on distributed networks} See Figure \ref{fig:front-running} \cite{Eskandari} 
+\item[Miner Extracted Value in Public Blockchain] is the most egregious. Miners create a block by selecting transactions from the mempool, and adding their own, in such a way to generate free profits. 
+\end{description}
+
+With decentralized limit order books, \emph{HFT Bots} can now front-run like the old school specialist by reacting to adversarial orders and jumping ahead. 
 DEXs with CLOB cannot enforce the anti front-running rules, seen in early electronic exchanges, which kills liquidity and price discovery. 
 
 DEXs cant prevent front-running, because decentralized consensus in limit order books require consensus on total ordering of transactions within blocks on a blockchain. 
-
-
-\subsubsection*{Front-Running and Permissioned Blockchains}
-Front-running is when an adversary sees an honest transaction on the network, and based on that information creates a new transaction in an attempt to beat the original transaction to processing. See Figure \ref{fig:front-running}
 
 Blockchains by design are decentralized with asynchronous transactions, meaning even honest nodes will sometimes receive transactions in different orders. So when a protocol is \emph{order dependent}, front-running attacks are possible.
 
@@ -167,15 +167,73 @@ Blockchains by design are decentralized with asynchronous transactions, meaning 
   \caption{Frontrunning in BFT Blockchain - Node1 reads the Users Transaction - \emph{TX1}, and Front runs them with \emph{TX2}, creating \emph{Adverse Selection Risk} for the User}\label{fig:front-running}
 \end{figure}
 
+\paragraph{Other work describe similar problems in various ways.} Eskandari et al. \cite{Eskandari} detail the theoretical problems of front-running on \emph{Ethereum} \emph{smart contract limit order book}, and describe \emph{cancellation grief}, for when a cancel transaction is front-run and the  original order gets executed. 
 
-\subsubsection*{MEV and Public Blockchains}
-\subsubsection*{Transaction Ordering}
-\subsubsection*{Why does it not work?}
-\subsection*{New Blockchain Abstraction}
+There is empirical evidence of front-running on Ethereum, with Dian concluding that this "poses a realistic threat to Ethereum today". \cite{Daian} 
+
+Luu et al. \cite{Luu} suggest that \emph{Transaction-Ordering Dependence} is an anti-pattern, while others highlight \emph{incentive and ordering attacks} in \emph{POW} blockchains \cite{Judmayer} \cite{Delmolino}. 
+
+Other works discussing front-running in blockchain markets: \cite{Malinova,Eskandari,Clark,Berg}.
+
+\paragraph{Permissioned Blockchains} use well researched \emph{Byzantine Fault Tolerant} (BFT) protocols with \emph{safety} and \emph{liveness} guarantees for distributed state replication. \cite{Gueta} These protocols are meant to be fault tolerant given an assumption of the distribution of honest nodes. However, research has been uncovering new types on non Byzantine attacks or faults:      
+\begin{center}
+\begin{itemize}{}
+  \item \emph{Rational Users} \cite{Hou}
+  \item \emph{Alive-but-corrupt} \cite{Malkhi}
+  \item \emph{Rational Manipulation} \cite{Shneidman}
+  \item \emph{Covert Adversaries} \cite{Aumann}
+  \item \emph{Byzantine-Altruistic-Rational (BAR)} \cite{Aiyer}
+\end{itemize}
+\end{center}
+
+\paragraph{Transaction-order-fairness} as a third Byzantine consensus property guarantee is described in the \emph{Aequitas} protocols \cite{Kelkar_2020}. A graph of all nodes transaction ordering is generated, which does in fact, reach consensus on a weaker form of \emph{order fairness}. However, as described in the paper, the \emph{Condorcet paradox} creates an impossibility for total fair ordering on transactions that have \emph{non transitive} ordering preferences. 
+
+Even in the \emph{Aequitas}  protocol, these transactions are left up to protocol developer for ordering. Unfortunately, with front-running on decentralized limit order books, consensus is needed on the orderings of precisely these transactions that are impossible to order! 
+
+\subsubsection*{Why does it not work?} 
+\begin{itemize}{}
+\item Ethereum abstracted the Bitcoin design into a blockchain, and added a virtual machine and turning complete smart contract language. 
+\item Permisssioned blockchains abstracted Bitcoin into Nakamoto consensus and added the rigour of security guarantees from the BFT consensus mechanisms of state replication. 
+\item Aequitas solved consensus on abstract transaction ordering consensus protocols. 
+\end{itemize}
+
+Only when looking at Bitcoin, and asking ``But why does work?'', as Badertscher et al. \cite{badertscher2018but} does, do we find our answer. They analyze Bitcoin from a Rational Protocol Design (RDP) framework, which is useful for analysing protocols that are already running. It does this by looking at it from the perspective of the protocol design intent and utility vs the utility of a potential adversary.  
+
+\textit{Bitcoin works because it was designed for the specific utility of peer-to-peer electronic cash, and the main goal of its blockhchain design was to create a incentive based equilibrium for preventing double-spends in a censorship resistant way}. \cite{Nakamoto}
+
+\paragraph{Blockchain abstractions as an anti-pattern}
+\begin{itemize}{}
+\item Ethereum is designed to run any abstract protocol. Yet protocols with order-dependency simply do not work. What went wrong is the abstraction from Bitcoin to blockchain. As the Bitcoin protocol is designed to prevent double spends and double-spend transactions are mutually exclusive. So one should only expect the small set of protocols, to be viable on Ethereum.    
+
+\item BFT consensus protocols were designed for replicating state for a single entity running distributed databases. Abstract multi-party competitive economic incentive based consensus protocols, have no relation to the BFT fault guarantees. 
+
+\item Aequitas expanded on the BFT consensus abstraction, which is already an anti-pattern, with even more abstractions.  
+\end{itemize}
+
+\section*{A New Blockchain Abstraction}
+We design our decentralized exchange for its specific utility. First and for-most the utility of exchange is reaching an equilibrium of price discovery. Price is the public good that should come out of our DEX. 
+
+\subsection*{Distributed Mechanism Design}
+Pre-dating blockchain, \emph{Algorithmic Game Theory} uses computer science to model complex game  dynamics for \emph{Nash Equilibrium} \cite{nisan_roughgarden_tardos_vazirani_2007}. See Lie et al, for in-depth analysis of Game Theory in Blockchain, with insight into its application to Permissioned blockchains \cite{Liu}.  
+
+\emph{Mechanism design} inverts algorithmic game theory. Where mechanisms are used to design systems and protocols, with actors reaching Nash Equilibrium that are in-line with specific objectives. \cite{nisan_2007} \cite{Shneidman} \cite{DBLP:journals/corr/abs-1905-08595}
+
+Most interesting to us is \emph{Distributed Mechanism Design} applied to Blockchain. Its been used to study centralization issues in blockchains \cite{Ray}, and miner incentives \cite{Chen}.  A recent blog post by Alex Evans, gives a comprehensive overview on \emph{Mechanism Design for Blockchain}, including  \emph{The Revelation Principle} as well as \emph{Vickrey-Clarke-Groves} auctions. \cite{Evans}
+
+\subsection {Methodology}
+Using distributed mechanism design theory, we design our DEX for the purpose of providing the specific utility of price discovery. The design goal is properly incentivize traders and market-makers to reach an equilibrium which stays within the rules and intent of the protocol, rather than attempt adversarial attacks.
+
+Our utility, price discovery, is itself an equalibrium, and is not easily quantified. Only after building and launching the model in the real world, can we then analyze the data and the running system to measure success. As such, this paper is the first step, to be followed by a real world implementation as a Bitcoin sidechain distributed exchange, DEX chain. 
+
+\subsection {Tools}
+\paragraph{Covert adversaries} describes an adversary that is only incentivized to cheat when they cannot get caught \cite{Aumann}. A deterrent for these attacks come from increased transparency, which is the hallmark feature of protocols dating back to Stornetta and Harbors linked-timestamps, the precursor to blockchain. \cite{10.1007/3-540-38424-3_32} 
+
+\paragraph{Decentralized matching engines} with limit order books is the market mechanism for our exchange. Years of empirical evidence in traditional markets have converged on this process, and we see no reason to re-invent this mechanism. 
 
 \section{Fair Price Discovery} 
+We define \emph{Fair price discovery} as an exchange with price discovery that is open for anyone to fully participate. We achive this by removing the time advantage given to HFT bots in centralized exchanges. the core solution is a front-running resistant distributed limit order book.  
 
-\subsection{Decentralized Limit Order Books}
+\subsection*{Decentralized Limit Order Books}
 We start with a closed network of exchange nodes, where each node has a matching-engine and maintains a CLOB, like a centralized exchange. 
 
 The distributed network of nodes come to consensus on the total ordering of transactions. This is done in two steps: 
@@ -193,10 +251,12 @@ From these two simple steps we have removed the advantage of HFT co-location, th
 
 \paragraph*{Miner Extracted Value} is no longer possible, as we come to consensus on the entire mempool, for each block. Recall, that \emph{MEV} is defined as a miner choosing, ordering or adding new transactions into a block in a way that generates economic value.  In our model, each block contains all the outstanding transactions, and the transactions in \emph{block-data} are in no particular order for processing, until after the \emph{block-order} auction. 
 
+\subsection*{On-Chain Settlement}
+Any DEX with on-chain matching needs a token for margin and settlement, otherwise fills from matching in the order-book can not be guaranteed. Guaranteed settlement of fills, is a basic requirement for price-discovery in open markets. Atomic swaps, for example, cannot guarantee settlement, they can only guarantee no funds are lost, in case one party reneges.
  
 \newpage
 \bibliography{sidepit}{}
-\bibliographystyle{plain}
-% \bibliographystyle{unsrt}
+% \bibliographystyle{plain}
+\bibliographystyle{unsrt}
 
 \end{document}
