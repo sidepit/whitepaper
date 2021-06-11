@@ -8,13 +8,13 @@
 \usepackage[inline, shortlabels]{enumitem}
 \RequirePackage[a4paper,top=3.5cm,left=3cm,right=3cm,bottom=2.4cm]{geometry}
 \title{Sidepit: Fair Price Discovery via Decentralized Exchange}
-\author{Yehuda Jay Berg \\jaybny@gmail.com}
+% \author{Yehuda Jay Berg \\jaybny@gmail.com}
 \date{May 2021}
 
 \begin{document}
 \parindent 0cm
 \parskip   6pt
-\maketitle
+% \maketitle
 
 % \documentclass[a4paper]{article}
 
@@ -29,6 +29,7 @@ Ever since Satoshi solved peer to peer digital cash with Bitcoin, people have be
 \end{abstract}
 
 \section*{Introduction}
+Decentralized Exchange (DEX), has been mostly focused on the non-custodial side for the settlement utility. We focusing on the real public service of an exchange, the price discovery utility. Taking inspiration from rational protocol design analysis of Bitcoin, we design our DEX with a designer intent and purpose of fair price discovery. We focus on a mechanism designed exchange for reaching equilibrium which produces price. We tackle the hardest technical problems of front-running on distributed limit order books.    
 
 \paragraph*{Price discovery}is a social benefit and a key goal in the design of a market structure. In fact, the goal of the architecture of an exchange mechanism, is to attract as much liquidity needed for price discovery.  \cite{francioni_schwartz_2017}
 
@@ -93,7 +94,7 @@ At the turn of the 21st century, exchanges adopted  Continuous Limit Order Books
 
 High Frequency refers to the reaction time of automated trading bots. This reaction time determines how often you are incentivized to cancel your orders. 
 
-Unless you are the absolute fastest, you are incentivized to immediately cancel your market making orders due to \emph{Adverse Selection Risk} (ASR)  
+Unless you are the absolute fastest, you are incentivized to immediately cancel your market making orders due to \emph{Adverse Selection Risk} (ASR)
 
 Example: \( reaction time = 2 seconds \) 
 
@@ -114,7 +115,7 @@ $t_3$ cancel
 
 If instead your trading plan was to \emph{flash} all your orders, by sending and immediately canceling. You would have already canceled at $t_1$ and after learning about the bankruptcy, you wouldn't have sent the new buy order at $t_2$
 
-The objective of the Market Maker is to buy at bid and sell at ask repeatedly. An adversary reacting faster than them, on the news of an IBM bankruptcy, is an example of ASR . 
+The objective of the Market Maker is to buy at bid and sell at ask repeatedly. An adversary reacting faster than them, on the news of an IBM bankruptcy, is an example of ASR. 
 
 Reducing ASR has lead to a massive HFT arms race leaving only a handful of players left, till this day. HFT players pay exchanges co-location fees to be as close to the matching engine as possible. 
 
@@ -131,7 +132,6 @@ Prior work also shows how speed is directly related to profits by reducing \emph
 \paragraph{Information Technology:} In addition to speed, HFT make profits from information technology, by modeling the order imbalances of the large institutions. Studies show the overall market-quality improves when \emph{HFT} profits from being informed, and declines when they profit from speed. \cite{Menkveld2}
 
 
- 
 \subsection*{Blockchain DEX Problems}
 
 Issues arise when attempting to design a decentralized exchange. In fact, the more decentralized the bigger the problem. 
