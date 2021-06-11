@@ -25,29 +25,19 @@
 % \title{Sidepit}
 % \maketitle
 \begin{abstract}
-Ever since Satoshi solved peer to peer digital cash with Bitcoin, people have been trying to apply similar techniques to solve other hard problems. One such problem, peer to peer exchange, is one of the most difficult of these problems. An exchange is a financial market, where trading of securities occurs. The purpose of an exchange is twofold; 1) for price discovery, 2) for counterparty settlement. Centralized Exchanges have been well researched and developed in traditional finance for well over a century. They evolved from trading under a tree, to the Chicago trading pits, to electronic exchanges with continuous limit order books. Modern exchanges provide 24/7 trading, and offer co-location for the most prolific traders, high frequency trading bots. Other decentralized exchanges aim to bring traditional centralized exchanges into a peer-to-peer blockchain protocol. Due to early bitcoin exchange hacks, most research has been focused on the settlement utility of exchange. We focus on the price discovery utility, an emergent property of real-time trading. We present fair price discovery with decentralized exchange by solving the impossible task of consensus on total ordering of transactions to mitigate front-running. 
+Ever since Satoshi solved peer to peer digital cash with Bitcoin, people have been trying to apply similar techniques to solve other hard problems. One such problem, peer to peer exchange, is one of the most difficult of these problems. An exchange is a financial market, where trading of securities occurs. The purpose of an exchange is twofold; 1) for price discovery, 2) for counter-party settlement. Centralized Exchanges have been well researched and developed in traditional finance for well over a century. They evolved from trading under a tree, to the Chicago trading pits, to electronic exchanges with continuous limit order books. Modern exchanges provide 24/7 trading, and offer co-location for the most prolific traders, high frequency trading bots. Decentralized exchanges aim to bring traditional centralized exchanges into a peer-to-peer blockchain protocol. Due to early bitcoin exchange hacks, most research has been focused on the settlement utility of exchange. We focus on the price discovery utility, an emergent property of real-time trading. We present Sidepit fair price discovery with decentralized exchange by solving the impossible task of consensus on total ordering of transactions to mitigate front-running. 
 \end{abstract}
 
-\section{Introduction}
-Ever since Satoshi solved peer to peer digital cash with the Bitcoin protocol, people have been trying to apply similar techniques to other hard problems. Peer to peer decentralized exchange (DEX), is one of the most difficult of these problems. 
+\section*{Introduction}
 
-The purpose of an exchange in financial markets, is to first match buyers and sellers of financial assets at a \emph{market} price, and then to provide settlement to mitigate any counterparty risk. Traditional electronic exchanges are designed with the goal of reaching a  \emph{price discovery} equilibrium \cite{francioni_schwartz_2017}. Centralized exchanges (CEXs), employ continuous limit order books as a price discovery mechanism. 
-
-Due to well known centralized exchange hacks, coupled with the technical difficulty of decentralized limit order books, most DEXs are solely focused on the non-custodial settlement, rather than \emph{price discovery}. 
-
-
-\paragraph*{Price discovery} is a social benefit and a key goal in the design of a market structure. In fact, the goal of the architecture of an exchange mechanism, is to attract as much liquidity needed for price discovery.  \cite{francioni_schwartz_2017}
+\paragraph*{Price discovery}is a social benefit and a key goal in the design of a market structure. In fact, the goal of the architecture of an exchange mechanism, is to attract as much liquidity needed for price discovery.  \cite{francioni_schwartz_2017}
 
 Price discovery is described in microstructure research as a search for an equilibrium price based on new external information. This new information is reflected in the traders orders, and is ultimately converted into a market price. \citep{RePEc:nbr:nberwo:6257}
 
 Some even define an exchange as ``any trading facility that has as its primary function the delivery of good price discovery'' \cite{francioni_schwartz_2017}. 
 
-However, the price discovery function of an  exchange typically receives insufficient attention in market structure discussions. This is largely attributable to the non-observability of equilibrium prices and, therefore, to the difficulty of quantifying the deviations of transaction prices from their equilibrium values \cite{francioni_schwartz_2017}
+Price discovery is the dynamic process of market prices moving from the old equilibrium to a new one, based on new information. The price discovery utility of exchange and its importance as a social good, is often overlooked, mostly due to the non-observability of equilibrium prices, making it difficult to quantify. \cite{francioni_schwartz_2017} \cite{RePEc:udb:wpaper:uwec-2005-01-r} 
 
-
-\begin{quote}
-Price discovery is dynamic in nature, and an efficient price discovery process is characterized by the fast adjustment of market prices from the old equilibrium to the new equilibrium with the arrival of new information \cite{RePEc:udb:wpaper:uwec-2005-01-r}    
-\end{quote}
 
 \paragraph*{Limit order books} and price discovery are tightly related. \citep{RePEc:nbr:nberwo:6257} \cite{RePEc:eee:jfinec:v:17:y:1986:i:1:p:5-26}
 
@@ -72,27 +62,24 @@ The interaction where market orders match limit orders is continuous.
 
 The state of a CLOB in a centralized exchange is shown to produce a price discovery equilibrium. 
 
-The design of CLOB evolved from previous exchanges, futures trading pits in Chicago allowed for price discovery to emerge. 
-
 For the purpose of price discovery, the match of buyers and seller must be atomic, or one party can pull out of the deal after the fact. 
-
 
 \subsubsection*{Evolution of Exchange}
 The design of CLOB evolved from previous exchanges. Futures trading pits in Chicago reached price discovery equilibrium.  
 
-Before electronic markets, an open outcry system in physical trading pits were setup at the exchange place. Buyers and sellers would be bunched up near each other, and they would verbalize their intention to buy or sell, the quantity they wish to trade, and the price they are willing to accept or pay. Traders would seek out the best prices by verbally matching with their counterparties. 
+Before electronic markets, an open outcry system in physical trading pits were setup at the exchange place. Buyers and sellers would be bunched up near each other, and they would verbalize their intention to buy or sell, the quantity they wish to trade, and the price they are willing to accept or pay. Traders would seek out the best prices by verbally matching with their counter-parties. 
 
-\textbf{A match in a trading pit is the real atomic swap} 
+\textbf{A match in a trading pit is the real atomic swap.} 
 
-For the purpose of Price Discovery what needs to be atomic is the match, otherwise one party can pull out of the deal. Exchanges like, CME, provide this guarantee. 
+For the purpose of Price Discovery what needs to be atomic is the match, otherwise one party can pull out of the deal. Centralized exchanges, like CME, provide this guarantee. 
 
 \textbf{Atomic swap DEXs, that allow one side to back out does not provide price discovery.}
 
-Backing out of a trade is the most used move by participants in modern exchanges. In fact, 60\%  of all orders placed on centralized exchanges are cancelled within 1 millisecond. \cite{notsure}  
+Backing out of a trade is the most used move by participants in modern exchanges. In fact, 60\%  of all orders placed on centralized exchanges are cancelled within 1 millisecond.  
 
 Going electronic, exchanges were faced with asynchronous message over IP. No longer can buyers and sellers interact simultaneously. Market makers in NASDAQ and specialist in NYSE were tasked with providing liquidity and filling orders. 
 
-Exchanges added anti-front-running rules, so for-profit MMs did not abuse the system. Rules, such as Reg NMS were made, not to prevent front-running, but to ensure price discovery. \cite{notsure} 
+Exchanges added anti-front-running rules, so for-profit MMs did not abuse the system. Rules, such as Reg NMS were made, not to prevent front-running, but to ensure price discovery.
 
 Early market maker based electronic exchanges, such as NASDAQ, were facing problems analogous to the problem of Miner Extracted Value (MEV) we see in Ethereum today. Where miners can not only front-run but can also add their own orders after seeing everyone else's. Exchanges feared this would lead to loss of confidence in the market which would affect the fragile state where the equilibrium of price discovery exists. 
 
@@ -100,13 +87,13 @@ When designing a DEX, we keep in mind how obvious unfairness will ultimately hur
 
 
 \subsubsection*{The HFT Problem}
-\textbf{The reason 60\% of all ordes are immediately canceled in today's markets is due to Continuous Limit Order Books (CLOBs).}
+\textbf{The reason 60\% of all ordes are immediately canceled in today's markets is due to adverse selection risk of stale limit orders.} 
 
-At the turn of the 20th century, exchanges adopted CLOB. No more front-running or market-makers. They were replaced with High Frequency Market Makers (HFT-MM) 
+At the turn of the 21st century, exchanges adopted  Continuous Limit Order Books (CLOBs). No more specialist front-running or market-makers. They were replaced with High Frequency Market Makers (HFT-MM) 
 
 High Frequency refers to the reaction time of automated trading bots. This reaction time determines how often you are incentivized to cancel your orders. 
 
-Unless you are the absolute fastest, you are incentivized to immediately cancel your market making orders due to \emph{Adverse Selection Risk } (ASR)  
+Unless you are the absolute fastest, you are incentivized to immediately cancel your market making orders due to \emph{Adverse Selection Risk} (ASR)  
 
 Example: \( reaction time = 2 seconds \) 
 
@@ -129,7 +116,7 @@ If instead your trading plan was to \emph{flash} all your orders, by sending and
 
 The objective of the Market Maker is to buy at bid and sell at ask repeatedly. An adversary reacting faster than them, on the news of an IBM bankruptcy, is an example of ASR . 
 
-Reducing ASR has lead to a massive HFT arms race \cite{notsure} leaving only a handful of players left, till this day. HFT players pay exchanges co-location fees to be as close to the matching engine as possible. 
+Reducing ASR has lead to a massive HFT arms race leaving only a handful of players left, till this day. HFT players pay exchanges co-location fees to be as close to the matching engine as possible. 
 
 While \emph{flashing} orders is a defensive move done by even the second fastest bot it is still not as destructive as front-running when it comes to interfering with the price discovery mechanism. 
 
@@ -207,7 +194,6 @@ Only when looking at Bitcoin, and asking ``But why does work?'', as Badertscher 
 
 \item BFT consensus protocols were designed for replicating state for a single entity running distributed databases. Abstract multi-party competitive economic incentive based consensus protocols, have no relation to the BFT fault guarantees. 
 
-\item Aequitas expanded on the BFT consensus abstraction, which is already an anti-pattern, with even more abstractions.  
 \end{itemize}
 
 \section*{A New Blockchain Abstraction}
@@ -220,17 +206,17 @@ Pre-dating blockchain, \emph{Algorithmic Game Theory} uses computer science to m
 
 Most interesting to us is \emph{Distributed Mechanism Design} applied to Blockchain. Its been used to study centralization issues in blockchains \cite{Ray}, and miner incentives \cite{Chen}.  A recent blog post by Alex Evans, gives a comprehensive overview on \emph{Mechanism Design for Blockchain}, including  \emph{The Revelation Principle} as well as \emph{Vickrey-Clarke-Groves} auctions. \cite{Evans}
 
-\subsection {Methodology}
-Using distributed mechanism design theory, we design our DEX for the purpose of providing the specific utility of price discovery. The design goal is properly incentivize traders and market-makers to reach an equilibrium which stays within the rules and intent of the protocol, rather than attempt adversarial attacks.
+\subsection* {Methodology}
+Using distributed mechanism design theory, we design our DEX for the purpose of providing the specific utility of price discovery. The design goal is to properly incentivize traders and market-makers to reach an equilibrium which stays within the rules and intent of the protocol, rather than attempt adversarial attacks.
 
-Our utility, price discovery, is itself an equilibrium, and is not easily quantified. Only after building and launching the model in the real world, can we then analyze the data and the running system to measure success. As such, this paper is the first step, to be followed by a real world implementation as a Bitcoin sidechain distributed exchange, DEX chain. 
+Our utility, price discovery, is itself an equilibrium, and is not easily quantified. Only after building and launching the model in the real world, can we then analyze the data and the running system to measure success. As such, this paper is the first step, to be followed by a real world implementation as a Bitcoin sidechain distributed exchange, Sidepit. 
 
-\subsection {Tools}
+\subsection* {Tools}
 \paragraph{Covert adversaries} describes an adversary that is only incentivized to cheat when they cannot get caught \cite{Aumann}. A deterrent for these attacks come from increased transparency, which is the hallmark feature of protocols dating back to Stornetta and Harbors linked-timestamps, the precursor to blockchain. \cite{10.1007/3-540-38424-3_32} 
 
 \paragraph{Decentralized matching engines} with limit order books is the market mechanism for our exchange. Years of empirical evidence in traditional markets have converged on this process, and we see no reason to re-invent this mechanism. 
 
-\paragraph{Aequitas Transaction Order Fairness} protocol is used, but not for real-time consensus, the transaction ordering consensus graph is generated in the background, for the purpose of spotting adversaries after the fact. This information has two purposes. 1) for a loose ``UASF'' economic social consensus reputation based system for quorum slice tier node selection, and 2) to disincentivise \emph{covert adversaries}  
+\paragraph{Aequitas Transaction Order Fairness} protocol is used, but not for real-time consensus, the transaction ordering consensus graph is generated in the background, for the purpose of spotting adversaries after the fact. This information is a mechanism to disincentivise \emph{covert adversaries} and can be used as reputation based system for quorum slice tier node selection, for our consensus protocol below.    
 
 \section{Fair Price Discovery} 
 We define \emph{Fair price discovery} as an exchange with price discovery that is open for anyone to fully participate. We achieve this by removing the time advantage given to \emph{HFT bots} in centralized exchanges. The core solution is a front-running resistant distributed limit order book.  
@@ -256,7 +242,7 @@ From these two simple steps we have removed the advantage of HFT co-location, th
 \subsection*{Permissioned DEX}
 The permissioned DEX is basically just a  centralized exchange with a distributed matching engine. Each member/trader of the exchange gets a full node, and forms a closed p2p network. Consensus on the mempool is reached every ~1 second via a BFT protocol, to create the \emph{block-data}. An auction is run after each block, and the highest bidder pays the exchange the bid amount, and gets to reorder the transactions into the \emph{block-order}. 
 
-As this is all happening in real time, each node will have multiple possible states based of different permutation of the orderings within the the \emph{block-data}, plus the new orders coming in. The new orders them-self, create new permutations. 
+As this is all happening in real time, each node will have multiple possible states based of different permutations of the orderings within the \emph{block-data}, but also the new orders coming in. The new orders them-self, create new permutations. 
 
 \paragraph*{This is akin to virtual co-location,} since after the block-data we allow nodes to pay to reorder the transactions into the final \emph{block-order}. This final \emph{block-order}, would be as if they were a co-located \emph{HFT bot} in a centralized exchange with the fasted reaction time. Only now, there is no longer a need for \emph{flashing} orders in fear of \emph{adverse selection}. 
 
@@ -267,13 +253,13 @@ For a full decentralized implementation, we implement \emph{Sidepit} as a Bitcoi
 \item We move/wrap bitcoin into the sidechain \footnote{either with 1way-peg, drivechain, or a trust minimized federation}, and enable full UTXO coin transfers. 
 \item Once in our own sidechain we implement a 2 way peg from our sidechain into the Sidepit exchange, for deposits and withdrawls. 
 \item Sidepit uses an account based model, rather than UTXOs 
-\item We define an on-chain USD futures contract denominated in bitcoin, with optional off-chain delivery. \footnote{Delivery cannot be enforced, but can  be connected to OTC DEXs like \emph{bisq}}  
+\item We define an on-chain USD futures contract denominated in Bitcoin, with optional off-chain delivery. \footnote{Delivery cannot be enforced, but can  be connected to OTC DEXs like \emph{bisq}}  
 \item We define \emph{exchangeOrder} transactions that can be a buy/sell/cancel with limit or market price.
 \item Every ~1 second the \emph{Sidepit federated consensus protocol} comes to consensus on the \emph{block-data} containing \emph{exchangeOrders}
 \item The \emph{block-order} auction is done by signing a modified version of covenant transactions \footnote{See https://gist.github.com/RubenSomsen/5e4be6d18e5fa526b17d8b34906b16a5}, making a chain of payments each second until the next bitcoin block.     
 \item A list of \emph{block-data} is processed in \emph{block-order} by each node, resulting in the state of full exchange order book, complete will positions, fills and PnL. Each node updates all the accounts balances, as this is deterministic.  
 \item Each Bitcoin block will contain a special Sidepit transaction, which includes a merkle root of a chain of \emph{block-data}:\emph{block-order} pairs, representing each ~1 second block of \emph{exchangeOrder} transactions, as well as the payment from the \emph{block-order} auctions for each block. \footnote{Bitcoin miners are paid, as they represent a Sybil resistant set unlikely to have an interest in front-running the \emph{block-data}. Note: unlike MEV, all they can accomplish is a free reordering, by paying them-self. Alternatively, the payment can be burnt, paid to a federation} 
-\item A valid Sidepit hash finalizes the state of the DEX, while an invalid one, only crates a hard-fork and a pause, only resulting in loss of bitcoin for attacker. \footnote{Since honest nodes will only bid to reorder a valid hash, an attacker would have to pay more than all auctions since the last Bitcoin block combined.}
+\item A valid Sidepit hash finalizes the state of the DEX, while an invalid one, only creates a hard-fork and a pause, only resulting in loss of bitcoin for attacker. \footnote{Since honest nodes will only bid to reorder a valid hash, an attacker would have to pay more than all auctions since the last Bitcoin block combined.}
 \end{enumerate}
 
 \subsubsection*{Sidepit Federated Consensus Protocol (SFCP) } 
@@ -286,7 +272,7 @@ Borrowing the ideas described by David Mazières \cite{thestellar}, we note that
 \paragraph{Hypothesis: DEX trader relationships transitively converge.} Market makers, high volume traders, and exchanges are the tier1 ISP equivalent of DEX. Eventually market forces should converge on honest, high volume, stable up-time, and well known nodes to use as tier1 for quorum slices.
 
 \subsubsection*{On-Chain Settlement}
-Any DEX with on-chain matching needs a token for margin and settlement, otherwise fills from matching in the order-book can not be guaranteed. Guaranteed settlement of fills, is a basic requirement for price-discovery in open markets. Atomic swaps, for example, cannot guarantee settlement, they can only guarantee no funds are lost, in case one party reneges. Sidepit uses an account based pegged bitcoin to for on-chain margin and settlement of a USD futures contract priced in bitcoin.    
+Any DEX with on-chain matching needs a token for margin and settlement, otherwise fills from matching in the order-book can not be guaranteed. Guaranteed settlement of fills, is a basic requirement for price-discovery in open markets. Atomic swaps, for example, cannot guarantee settlement, they can only guarantee no funds are lost, in case one party reneges. Sidepit uses pegged bitcoin for on-chain margin and settlement of a USD futures contract priced in bitcoin.    
  
 \newpage
 \bibliography{sidepit}{}
