@@ -25,7 +25,7 @@
 % \title{Sidepit}
 % \maketitle
 \begin{abstract}
-Ever since  Satoshi  solved  peer  to  peer  digital  cash  with  Bitcoin,  people have  been  trying  to  apply  similar  techniques  to  solve  other  hard  problems. One such problem, peer to peer exchange, is one of the most difficult of these problems. An exchange is a financial market, where trading of securities, assets, futures, commodities etc occur. The purpose of an exchange is two fold;  1) for price discovery, 2) for counterparty settlement. Centralized Exchanges, have been well researched and developed in traditional finance for well over a century.  They evolved from trading under a tree, to the Chicago trading pits, to electronic exchanges with continuous limit order books. Modern exchanges provide 24/7 trading, and offer co-location for the most prolific traders, high frequency trading bots. Other decentralized exchanges aim to bring traditional centralized exchanges into a peer to peer blockchain protocol. Due to early bitcoin exchange hacks most research has been focused on the settlement utility of exchange. We focus on the price discovery utility, an emergent property of real-time trading. We present fair price discovery with decentralized exchange by solving the impossible task of consensus on total ordering of transactions to mitigate front-running.
+Ever since Satoshi solved peer to peer digital cash with Bitcoin, people have been trying to apply similar techniques to solve other hard problems. One such problem, peer to peer exchange, is one of the most difficult of these problems. An exchange is a financial market, where trading of securities occurs. The purpose of an exchange is twofold; 1) for price discovery, 2) for counterparty settlement. Centralized Exchanges have been well researched and developed in traditional finance for well over a century. They evolved from trading under a tree, to the Chicago trading pits, to electronic exchanges with continuous limit order books. Modern exchanges provide 24/7 trading, and offer co-location for the most prolific traders, high frequency trading bots. Other decentralized exchanges aim to bring traditional centralized exchanges into a peer-to-peer blockchain protocol. Due to early bitcoin exchange hacks, most research has been focused on the settlement utility of exchange. We focus on the price discovery utility, an emergent property of real-time trading. We present fair price discovery with decentralized exchange by solving the impossible task of consensus on total ordering of transactions to mitigate front-running. 
 \end{abstract}
 
 \section{Introduction}
@@ -35,7 +35,8 @@ The purpose of an exchange in financial markets, is to first match buyers and se
 
 Due to well known centralized exchange hacks, coupled with the technical difficulty of decentralized limit order books, most DEXs are solely focused on the non-custodial settlement, rather than \emph{price discovery}. 
 
-\paragraph*{Price discovery} is a social benefit and a key goal in the design of a market structure. In fact, the goal of the architecture of an exchange mechanism, is to attract as much liquidity as is needed for price discovery.  \cite{francioni_schwartz_2017}
+
+\paragraph*{Price discovery} is a social benefit and a key goal in the design of a market structure. In fact, the goal of the architecture of an exchange mechanism, is to attract as much liquidity needed for price discovery.  \cite{francioni_schwartz_2017}
 
 Price discovery is described in microstructure research as a search for an equilibrium price based on new external information. This new information is reflected in the traders orders, and is ultimately converted into a market price. \citep{RePEc:nbr:nberwo:6257}
 
@@ -65,7 +66,7 @@ Limit orders have a quantity and a price.
 \end{enumerate*}
 
 
-\paragraph*{Continuous limit order book (CLOB)}is the market micro structure that leads to price discovery \footnote{Other types of markets such as call auctions, and dealer markets, do not provide the robustness of limit orders for price discovery. \cite{RePEc:hal:journl:hal-00459785}}. There are two order types. Limit orders, where you provide your own price, with the risk of waiting to be matched and market-orders, where you get filled immediately in return for a possibly worse price.
+\paragraph*{Continuous limit order book (CLOB)}is the market micro structure that leads to price discovery \footnote{Other types of markets such as call auctions, and dealer markets, do not provide the robustness of limit orders for price discovery. \cite{RePEc:hal:journl:hal-00459785}}. There are two order types. Limit orders, where you provide your own price, with the risk of waiting to be matched, and market-orders, where you get filled immediately in return for a possibly worse price.
 
 The interaction where market orders match limit orders is continuous. 
 
@@ -79,11 +80,11 @@ For the purpose of price discovery, the match of buyers and seller must be atomi
 \subsubsection*{Evolution of Exchange}
 The design of CLOB evolved from previous exchanges. Futures trading pits in Chicago reached price discovery equilibrium.  
 
-Before electronic markets, an open outcry system in physical trading pits were setup at the exchange place. Buyers and sellers would be bunched up in close proximity to each other, and they would verbalize their intention to buy or sell, the quantity they wish to trade, and the price they are willing to accept or pay. Traders would seek out the best prices by verbally filling with their counterparties. 
+Before electronic markets, an open outcry system in physical trading pits were setup at the exchange place. Buyers and sellers would be bunched up near each other, and they would verbalize their intention to buy or sell, the quantity they wish to trade, and the price they are willing to accept or pay. Traders would seek out the best prices by verbally matching with their counterparties. 
 
 \textbf{A match in a trading pit is the real atomic swap} 
 
-For the purpose of Price Discovery what needs to be atomic is the  match, otherwise one party can pull out of the deal. CME provides this guarantee. 
+For the purpose of Price Discovery what needs to be atomic is the match, otherwise one party can pull out of the deal. Exchanges like, CME, provide this guarantee. 
 
 \textbf{Atomic swap DEXs, that allow one side to back out does not provide price discovery.}
 
@@ -91,12 +92,11 @@ Backing out of a trade is the most used move by participants in modern exchanges
 
 Going electronic, exchanges were faced with asynchronous message over IP. No longer can buyers and sellers interact simultaneously. Market makers in NASDAQ and specialist in NYSE were tasked with providing liquidity and filling orders. 
 
-Exchanges added anti-front-running rules, so for profit MMs did not abuse the system. Rules, such as Reg NMS were made, not to prevent front-running, 
-but to ensure price discovery. \cite{notsure} 
+Exchanges added anti-front-running rules, so for-profit MMs did not abuse the system. Rules, such as Reg NMS were made, not to prevent front-running, but to ensure price discovery. \cite{notsure} 
 
 Early market maker based electronic exchanges, such as NASDAQ, were facing problems analogous to the problem of Miner Extracted Value (MEV) we see in Ethereum today. Where miners can not only front-run but can also add their own orders after seeing everyone else's. Exchanges feared this would lead to loss of confidence in the market which would affect the fragile state where the equilibrium of price discovery exists. 
 
-When designing a DEX, we keep in mind how obvious unfairness will ultimately hurt liquidity, the exchange overall, and Price Discovery in particular. In fact, the main issue with decentralized LOB is not the MEV or front-running but the loss of confidence stemming from those problems.  
+When designing a DEX, we keep in mind how obvious unfairness will ultimately hurt liquidity, the exchange overall, and Price Discovery in particular. In fact, the main issue with decentralized CLOB is not the MEV or front-running but the loss of confidence stemming from those problems.  
 
 
 \subsubsection*{The HFT Problem}
@@ -104,7 +104,7 @@ When designing a DEX, we keep in mind how obvious unfairness will ultimately hur
 
 At the turn of the 20th century, exchanges adopted CLOB. No more front-running or market-makers. They were replaced with High Frequency Market Makers (HFT-MM) 
 
-High Frequency refers to the reaction time of automated trading bots. This reaction time determines how often you are incentiviced to cancel your orders. 
+High Frequency refers to the reaction time of automated trading bots. This reaction time determines how often you are incentivized to cancel your orders. 
 
 Unless you are the absolute fastest, you are incentivized to immediately cancel your market making orders due to \emph{Adverse Selection Risk } (ASR)  
 
@@ -127,7 +127,7 @@ $t_3$ cancel
 
 If instead your trading plan was to \emph{flash} all your orders, by sending and immediately canceling. You would have already canceled at $t_1$ and after learning about the bankruptcy, you wouldn't have sent the new buy order at $t_2$
 
-The objective of the Market Maker is to buy at bid and sell at ask over and over again. An adversary reacting faster than them, on the news of an IBM bankruptcy, is an example of ASR . 
+The objective of the Market Maker is to buy at bid and sell at ask repeatedly. An adversary reacting faster than them, on the news of an IBM bankruptcy, is an example of ASR . 
 
 Reducing ASR has lead to a massive HFT arms race \cite{notsure} leaving only a handful of players left, till this day. HFT players pay exchanges co-location fees to be as close to the matching engine as possible. 
 
@@ -158,7 +158,7 @@ Issues arise when attempting to design a decentralized exchange. In fact, the mo
 With decentralized limit order books, \emph{HFT Bots} can now front-run like the old school specialist by reacting to adversarial orders and jumping ahead. 
 DEXs with CLOB cannot enforce the anti front-running rules, seen in early electronic exchanges, which kills liquidity and price discovery. 
 
-DEXs cant prevent front-running, because decentralized consensus in limit order books require consensus on total ordering of transactions within blocks on a blockchain. 
+DEXs cant prevent front-running, because decentralized consensus in limit order books require consensus on total ordering of transactions within blocks on a blockchain.
 
 Blockchains by design are decentralized with asynchronous transactions, meaning even honest nodes will sometimes receive transactions in different orders. So when a protocol is \emph{order dependent}, front-running attacks are possible.
 
@@ -188,7 +188,7 @@ Other works discussing front-running in blockchain markets: \cite{Malinova,Eskan
 
 \paragraph{Transaction-order-fairness} as a third Byzantine consensus property guarantee is described in the \emph{Aequitas} protocols \cite{Kelkar_2020}. A graph of all nodes transaction ordering is generated, which does in fact, reach consensus on a weaker form of \emph{order fairness}. However, as described in the paper, the \emph{Condorcet paradox} creates an impossibility for total fair ordering on transactions that have \emph{non transitive} ordering preferences. 
 
-Even in the \emph{Aequitas}  protocol, these transactions are left up to protocol developer for ordering. Unfortunately, with front-running on decentralized limit order books, consensus is needed on the orderings of precisely these transactions that are impossible to order! 
+Even in the \emph{Aequitas} protocol, these transactions are left up to protocol developer for ordering. Unfortunately, with front-running on decentralized limit order books, consensus is needed on the orderings of precisely these transactions that are impossible to order! 
 
 \subsubsection*{Why does it not work?} 
 \begin{itemize}{}
