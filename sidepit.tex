@@ -223,15 +223,17 @@ Most interesting to us is \emph{Distributed Mechanism Design} applied to Blockch
 \subsection {Methodology}
 Using distributed mechanism design theory, we design our DEX for the purpose of providing the specific utility of price discovery. The design goal is properly incentivize traders and market-makers to reach an equilibrium which stays within the rules and intent of the protocol, rather than attempt adversarial attacks.
 
-Our utility, price discovery, is itself an equalibrium, and is not easily quantified. Only after building and launching the model in the real world, can we then analyze the data and the running system to measure success. As such, this paper is the first step, to be followed by a real world implementation as a Bitcoin sidechain distributed exchange, DEX chain. 
+Our utility, price discovery, is itself an equilibrium, and is not easily quantified. Only after building and launching the model in the real world, can we then analyze the data and the running system to measure success. As such, this paper is the first step, to be followed by a real world implementation as a Bitcoin sidechain distributed exchange, DEX chain. 
 
 \subsection {Tools}
 \paragraph{Covert adversaries} describes an adversary that is only incentivized to cheat when they cannot get caught \cite{Aumann}. A deterrent for these attacks come from increased transparency, which is the hallmark feature of protocols dating back to Stornetta and Harbors linked-timestamps, the precursor to blockchain. \cite{10.1007/3-540-38424-3_32} 
 
 \paragraph{Decentralized matching engines} with limit order books is the market mechanism for our exchange. Years of empirical evidence in traditional markets have converged on this process, and we see no reason to re-invent this mechanism. 
 
+\paragraph{Aequitas Transaction Order Fairness} protocol is used, but not for real-time consensus, the transaction ordering consensus graph is generated in the background, for the purpose of spotting adversaries after the fact. This information has two purposes. 1) for a loose ``UASF'' economic social consensus reputation based system for quorum slice tier node selection, and 2) to disincentivise \emph{covert adversaries}  
+
 \section{Fair Price Discovery} 
-We define \emph{Fair price discovery} as an exchange with price discovery that is open for anyone to fully participate. We achive this by removing the time advantage given to HFT bots in centralized exchanges. the core solution is a front-running resistant distributed limit order book.  
+We define \emph{Fair price discovery} as an exchange with price discovery that is open for anyone to fully participate. We achieve this by removing the time advantage given to \emph{HFT bots} in centralized exchanges. The core solution is a front-running resistant distributed limit order book.  
 
 \subsection*{Decentralized Limit Order Books}
 We start with a closed network of exchange nodes, where each node has a matching-engine and maintains a CLOB, like a centralized exchange. 
@@ -249,7 +251,31 @@ From these two simple steps we have removed the advantage of HFT co-location, th
 
 \paragraph*{Front-running} by \emph{rushing} has no advantage, as the processing order is not determined by which transaction was seen first on the network. 
 
-\paragraph*{Miner Extracted Value} is no longer possible, as we come to consensus on the entire mempool, for each block. Recall, that \emph{MEV} is defined as a miner choosing, ordering or adding new transactions into a block in a way that generates economic value.  In our model, each block contains all the outstanding transactions, and the transactions in \emph{block-data} are in no particular order for processing, until after the \emph{block-order} auction. 
+\paragraph*{Miner Extracted Value} is no longer possible, as we come to consensus on the entire mempool, for each block. Recall, that \emph{MEV} is defined as a miner choosing, ordering or adding new transactions into a block in a way that generates economic value. In our model, each block contains all the outstanding transactions, and the transactions in \emph{block-data} are in no particular order for processing, until after the \emph{block-order} auction. 
+
+\subsection*{Permissioned DEX}
+The permissioned DEX is basically just a  centralized exchange with a distributed matching engine. Each member/trader of the exchange gets a full node, and forms a closed p2p network. Consensus on the mempool is reached every ~1 second via a BFT protocol, to create the \emph{block-data}. An auction is run after each block, and the highest bidder pays the exchange the bid amount, and gets to reorder the transactions into the \emph{block-order}. 
+
+As this is all happening in real time, each node will have multiple possible states based of different permutation of the orderings within the the \emph{block-data}, plus the new orders coming in. The new orders them-self, create new permutations. 
+
+\paragraph*{This is akin to virtual co-location,} since after the block-data we allow nodes to pay to reorder the transactions into the final \emph{block-order}. This final \emph{block-order}, would be as if they were a co-located \emph{HFT bot} in a centralized exchange with the fasted reaction time. Only now, there is no longer a need for \emph{flashing} orders in fear of \emph{adverse selection}. 
+
+\subsection*{Open DEX}
+For a full decentralized implementation, we must have an open network, solve decentralized non-custodial settlement, define an on-chain asset to trade, and have an on-chain currency for unit-of-account. All this must be done in a real-time with low-latency. Then we must come to consensus on finality and immutability. 
+
+\subsubsection*{Exchange Orders via Federated BFT} 
+We define \emph{DEX consensus protocol (DCP),} as a modified Stellar Consensus Protocol \cite{thestellar} which is a Federated Byzantine Agreement (FBA) protocol. \\
+
+Borrowing the ideas described by David Mazières \cite{thestellar}, we note that a DEX is like the internet in that ``Transitively, everyone wants to talk to everyone''. While trader nodes maybe in a competition, and even adversarial to each other, they require \emph{all} transactions from all peers to pass into their local mempool matching engine, and create a CLOB state, in order to make trading decisions and sign/gossip new transaction orders.        
+
+\paragraph{A Tiered Quorum Slice} model is used, where each node chooses set of nodes for real-time BFT consensus every ~1 second, similar to the permissioned model. 
+
+\paragraph{Hypothesis: DEX trader relationships transitively converge.} Market makers, high volume traders, and exchanges are the tier1 ISP equivalent of DEX. Eventually market forces should converge on honest, high volume, stable uptime, and well known nodes to use as tier1 for quorum slices.
+
+Each node creates a \emph{Tiered Quorum Slice} where each node chooses set of nodes for real-time low latency consensus of \emph{block-data}, similar to the permissioned model. 
+
+
+Sidepit transactions pay fees in pegged bitcoin (PBTC). All transactions go into a mempool. The goal is coming to consensus on the entire mempool, every ~1 seconds. There can potentially be 100 or more dexchain blocks in-between each bitcoin block.
 
 \subsection*{On-Chain Settlement}
 Any DEX with on-chain matching needs a token for margin and settlement, otherwise fills from matching in the order-book can not be guaranteed. Guaranteed settlement of fills, is a basic requirement for price-discovery in open markets. Atomic swaps, for example, cannot guarantee settlement, they can only guarantee no funds are lost, in case one party reneges.
