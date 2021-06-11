@@ -261,24 +261,32 @@ As this is all happening in real time, each node will have multiple possible sta
 \paragraph*{This is akin to virtual co-location,} since after the block-data we allow nodes to pay to reorder the transactions into the final \emph{block-order}. This final \emph{block-order}, would be as if they were a co-located \emph{HFT bot} in a centralized exchange with the fasted reaction time. Only now, there is no longer a need for \emph{flashing} orders in fear of \emph{adverse selection}. 
 
 \subsection*{Open DEX}
-For a full decentralized implementation, we must have an open network, solve decentralized non-custodial settlement, define an on-chain asset to trade, and have an on-chain currency for unit-of-account. All this must be done in a real-time with low-latency. Then we must come to consensus on finality and immutability. 
+For a full decentralized implementation, we implement \emph{Sidepit} as a Bitcoin sidechain.  
 
-\subsubsection*{Exchange Orders via Federated BFT} 
-We define \emph{DEX consensus protocol (DCP),} as a modified Stellar Consensus Protocol \cite{thestellar} which is a Federated Byzantine Agreement (FBA) protocol. \\
+\begin{enumerate}[leftmargin=*]
+\item We move/wrap bitcoin into the sidechain \footnote{either with 1way-peg, drivechain, or a trust minimized federation}, and enable full UTXO coin transfers. 
+\item Once in our own sidechain we implement a 2 way peg from our sidechain into the Sidepit exchange, for deposits and withdrawls. 
+\item Sidepit uses an account based model, rather than UTXOs 
+\item We define an on-chain USD futures contract denominated in bitcoin, with optional off-chain delivery. \footnote{Delivery cannot be enforced, but can  be connected to OTC DEXs like \emph{bisq}}  
+\item We define \emph{exchangeOrder} transactions that can be a buy/sell/cancel with limit or market price.
+\item Every ~1 second the \emph{Sidepit federated consensus protocol} comes to consensus on the \emph{block-data} containing \emph{exchangeOrders}
+\item The \emph{block-order} auction is done by signing a modified version of covenant transactions \footnote{See https://gist.github.com/RubenSomsen/5e4be6d18e5fa526b17d8b34906b16a5}, making a chain of payments each second until the next bitcoin block.     
+\item A list of \emph{block-data} is processed in \emph{block-order} by each node, resulting in the state of full exchange order book, complete will positions, fills and PnL. Each node updates all the accounts balances, as this is deterministic.  
+\item Each Bitcoin block will contain a special Sidepit transaction, which includes a merkle root of a chain of \emph{block-data}:\emph{block-order} pairs, representing each ~1 second block of \emph{exchangeOrder} transactions, as well as the payment from the \emph{block-order} auctions for each block. \footnote{Bitcoin miners are paid, as they represent a Sybil resistant set unlikely to have an interest in front-running the \emph{block-data}. Note: unlike MEV, all they can accomplish is a free reordering, by paying them-self. Alternatively, the payment can be burnt, paid to a federation} 
+\item A valid Sidepit hash finalizes the state of the DEX, while an invalid one, only crates a hard-fork and a pause, only resulting in loss of bitcoin for attacker. \footnote{Since honest nodes will only bid to reorder a valid hash, an attacker would have to pay more than all auctions since the last Bitcoin block combined.}
+\end{enumerate}
+
+\subsubsection*{Sidepit Federated Consensus Protocol (SFCP) } 
+SFCP is a modified Stellar Consensus Protocol \cite{thestellar} which is a Federated Byzantine Agreement protocol. \\
 
 Borrowing the ideas described by David Mazières \cite{thestellar}, we note that a DEX is like the internet in that ``Transitively, everyone wants to talk to everyone''. While trader nodes maybe in a competition, and even adversarial to each other, they require \emph{all} transactions from all peers to pass into their local mempool matching engine, and create a CLOB state, in order to make trading decisions and sign/gossip new transaction orders.        
 
-\paragraph{A Tiered Quorum Slice} model is used, where each node chooses set of nodes for real-time BFT consensus every ~1 second, similar to the permissioned model. 
+\paragraph{A Tiered Quorum Slice} model is used, where each node chooses set of nodes for real-time BFT consensus every ~1 second, similar to the permissioned model. The protocol reaches consensus as long as there is quorum slice overlap. This must come from social consensus and requires a \emph{Weak Subjectivity}.   
 
-\paragraph{Hypothesis: DEX trader relationships transitively converge.} Market makers, high volume traders, and exchanges are the tier1 ISP equivalent of DEX. Eventually market forces should converge on honest, high volume, stable uptime, and well known nodes to use as tier1 for quorum slices.
+\paragraph{Hypothesis: DEX trader relationships transitively converge.} Market makers, high volume traders, and exchanges are the tier1 ISP equivalent of DEX. Eventually market forces should converge on honest, high volume, stable up-time, and well known nodes to use as tier1 for quorum slices.
 
-Each node creates a \emph{Tiered Quorum Slice} where each node chooses set of nodes for real-time low latency consensus of \emph{block-data}, similar to the permissioned model. 
-
-
-Sidepit transactions pay fees in pegged bitcoin (PBTC). All transactions go into a mempool. The goal is coming to consensus on the entire mempool, every ~1 seconds. There can potentially be 100 or more dexchain blocks in-between each bitcoin block.
-
-\subsection*{On-Chain Settlement}
-Any DEX with on-chain matching needs a token for margin and settlement, otherwise fills from matching in the order-book can not be guaranteed. Guaranteed settlement of fills, is a basic requirement for price-discovery in open markets. Atomic swaps, for example, cannot guarantee settlement, they can only guarantee no funds are lost, in case one party reneges.
+\subsubsection*{On-Chain Settlement}
+Any DEX with on-chain matching needs a token for margin and settlement, otherwise fills from matching in the order-book can not be guaranteed. Guaranteed settlement of fills, is a basic requirement for price-discovery in open markets. Atomic swaps, for example, cannot guarantee settlement, they can only guarantee no funds are lost, in case one party reneges. Sidepit uses an account based pegged bitcoin to for on-chain margin and settlement of a USD futures contract priced in bitcoin.    
  
 \newpage
 \bibliography{sidepit}{}
