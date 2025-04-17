@@ -8,7 +8,7 @@
 \usepackage[inline, shortlabels]{enumitem}
 \RequirePackage[a4paper,top=3.5cm,left=3cm,right=3cm,bottom=2.4cm]{geometry}
 \title{Sidepit: Fair Price Discovery via Decentralized Exchange}
-\author{Yehuda Jay Berg \\jay@protoblock.com}
+\author{Jay Y. Berg \\jb@sidepit.com}
 \date{June 10 2021}
 
 \begin{document}
@@ -25,7 +25,7 @@
 % \title{Sidepit}
 % \maketitle
 \begin{abstract}
-Ever since Satoshi solved peer to peer digital cash with Bitcoin, people have been trying to apply similar techniques to solve other hard problems. One such problem, peer to peer exchange, is one of the most difficult of these problems. An exchange is a financial market, where trading of securities occurs. The purpose of an exchange is twofold; 1) for price discovery, 2) for counter-party settlement. Centralized Exchanges have been well researched and developed in traditional finance for well over a century. They evolved from trading under a tree, to the Chicago trading pits, to electronic exchanges with continuous limit order books. Modern exchanges provide 24/7 trading, and offer co-location for the most prolific traders, high frequency trading bots. Decentralized exchanges aim to bring traditional centralized exchanges into a peer-to-peer blockchain protocol. Due to early bitcoin exchange hacks, most research has been focused on the settlement utility of exchange. We focus on the price discovery utility, an emergent property of real-time trading. We present Sidepit fair price discovery with decentralized exchange by solving the impossible task of consensus on total ordering of transactions to mitigate front-running. 
+Ever since Satoshi solved peer to peer digital cash with Bitcoin, people have been trying to apply similar techniques to solve other hard problems. One such problem, peer to peer exchange, is one of the most difficult of these problems. An exchange is a financial market, where trading of securities occurs. The purpose of an exchange is twofold; 1) for price discovery, 2) for counter-party settlement. Centralized Exchanges have been well researched and developed in traditional finance for well over a century. They evolved from trading under a tree, to the Chicago trading pits, to electronic exchanges with central limit order books. Modern exchanges provide 24/7 trading, and offer co-location for the most prolific traders, high frequency trading bots. Decentralized exchanges aim to bring traditional centralized exchanges into a peer-to-peer blockchain protocol. Due to early bitcoin exchange hacks, most research has been focused on the settlement utility of exchange. We focus on the price discovery utility, an emergent property of real-time trading. We present Sidepit fair price discovery with decentralized exchange by solving the impossible task of consensus on total ordering of transactions to mitigate front-running. 
 \end{abstract}
 
 \section*{Introduction}
@@ -57,7 +57,7 @@ Limit orders have a quantity and a price.
 \end{enumerate*}
 
 
-\paragraph*{Continuous limit order book (CLOB)}is the market micro structure that leads to price discovery \footnote{Other types of markets such as call auctions, and dealer markets, do not provide the robustness of limit orders for price discovery. \cite{RePEc:hal:journl:hal-00459785}}. There are two order types. Limit orders, where you provide your own price, with the risk of waiting to be matched, and market-orders, where you get filled immediately in return for a possibly worse price.
+\paragraph*{Central limit order book (CLOB)}is the market micro structure that leads to price discovery \footnote{Other types of markets such as call auctions, and dealer markets, do not provide the robustness of limit orders for price discovery. \cite{RePEc:hal:journl:hal-00459785}}. There are two order types. Limit orders, where you provide your own price, with the risk of waiting to be matched, and market-orders, where you get filled immediately in return for a possibly worse price.
 
 The interaction where market orders match limit orders is continuous. 
 
@@ -90,7 +90,7 @@ When designing a DEX, we keep in mind how obvious unfairness will ultimately hur
 \subsubsection*{The HFT Problem}
 \textbf{The reason 60\% of all ordes are immediately canceled in today's markets is due to adverse selection risk of stale limit orders.} 
 
-At the turn of the 21st century, exchanges adopted  Continuous Limit Order Books (CLOBs). No more specialist front-running or market-makers. They were replaced with High Frequency Market Makers (HFT-MM) 
+At the turn of the 21st century, exchanges adopted  Central Limit Order Books (CLOBs). No more specialist front-running or market-makers. They were replaced with High Frequency Market Makers (HFT-MM) 
 
 High Frequency refers to the reaction time of automated trading bots. This reaction time determines how often you are incentivized to cancel your orders. 
 
